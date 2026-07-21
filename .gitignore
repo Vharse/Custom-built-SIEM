@@ -1,0 +1,29 @@
+# IDE
+.vscode/
+
+# Python virtual environment
+backend/.venv/
+
+# Python cache
+**/__pycache__/
+*.pyc
+
+# Environment variables (contains secrets)
+.env
+
+# Database
+backend/db_data/
+*.db
+
+# Logs
+logs/
+*.log
+
+# Node dependencies
+node_modules/
+
+# Operating system
+.DS_Store
+.bash_history
+
+alembic

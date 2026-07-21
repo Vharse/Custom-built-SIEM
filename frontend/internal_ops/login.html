@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Access | Admin</title>
+    <script src="js/security.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../resources/css/output.css">
+</head>
+
+<body class="bg-[#0a0a0a] text-gray-100 min-h-screen flex items-center justify-center font-sans">
+
+    <div class="glass w-[32%] p-10 bg-[#111]/50 border border-emerald-500/10 rounded-xl backdrop-blur-md">
+        <div class="mb-10 text-left">
+            <p class="mono text-emerald-500 text-[10px] tracking-[0.3em] font-bold mb-2"
+                style="text-shadow: 0 0 15px rgba(16, 185, 129, 0.7)">
+                >> AUTH_REQUIRED
+            </p>
+            <h1 class="text-3xl font-bold tracking-tight text-white">
+                Admin <span
+                    class="text-gradient-to-r from-emerald-500 via-emerald-300 to-cyan-50 bg-clip-text">Login</span>
+            </h1>
+        </div>
+
+        <form id="login-form" class="space-y-6">
+            <div class="space-y-1">
+                <label for="username" class="block text-[10px] uppercase tracking-widest text-emerald-500 font-bold"
+                    style="text-shadow: 0 0 8px rgba(16, 185, 129, 0.5)">Identifier</label>
+                <input type="text" id="username" name="username" required autocomplete="username"
+                    class="w-full bg-black border border-emerald-500/20 p-3 rounded-lg focus:border-emerald-500 outline-none transition-all text-white">
+            </div>
+            <div class="space-y-1">
+                <label for="password" class="block text-[10px] uppercase tracking-widest text-emerald-500 font-bold"
+                    style="text-shadow: 0 0 8px rgba(16, 185, 129, 0.5)">Security Hash</label>
+                <input type="password" id="password" name="password" required autocomplete="current-password"
+                    class="w-full bg-black border border-emerald-500/20 p-3 rounded-lg focus:border-emerald-500 outline-none transition-all text-white">
+            </div>
+            <button type="submit" id="login-btn"
+                class="w-full cursor-pointer bg-emerald-600 hover:bg-emerald-900 text-xs text-black font-black py-4 rounded-lg uppercase tracking-widest transition-all shadow-[0_0_0px_rgba(16,185,129,0.3)] disabled:opacity-50 disabled:cursor-not-allowed">
+                Decrypt & Enter
+            </button>
+        </form>
+
+        <p id="error-msg" class="mt-6 text-red-400 text-[10px] text-center font-mono hidden uppercase tracking-tighter">
+            Err: invalid_credentials
+        </p>
+    </div>
+    <script src="js/auth_handler.js"></script>
+</body>
+
+</html>

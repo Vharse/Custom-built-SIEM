@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; 
+           script-src 'self' 'unsafe-inline' https://unpkg.com https://kit.fontawesome.com https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; 
+           style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; 
+           font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; 
+           connect-src 'self' http://127.0.0.1:8000 http://localhost:8000; 
+           img-src 'self' data:; https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.10.8/sweetalert2.all.min.js;https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css">
+  <title>Oluwafemi | CyberSecurity Ethusiat</title>
+  <link rel="stylesheet" href="./resources/css/output.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Navbar -->
+  <!-- <nav
+    class="fixed w-full z-[100] px-8 py-8 bg-[#0f0f0f]/80 backdrop-blur-sm border-b border-emerald-500/10 transition-all duration-300">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <span class="text-sm font-bold tracking-[0.1em] text-emerald-500 mono">
+        LOGIX
+      </span>
+      <div class="hidden md:flex gap-4 text-[11px] uppercase tracking-[0.2em] font-extrabold text-gray-500">
+        <a href="#home" class="hover:text-white/80 text-emerald-500 transition">Home</a>
+        <a href="#about" class="hover:text-white/80 text-emerald-500 transition">About</a>
+        <a href="#skills" class="hover:text-white/80 text-emerald-500 transition">Skills</a>
+        <a href="#expertise" class="hover:text-white/80 text-emerald-500 transition">Expertise</a>
+        <a href="#contact" class="hover:text-white/80 text-emerald-500 transition">Contact</a>
+      </div>
+    </div>
+  </nav> -->
+  <nav
+    class="fixed w-full z-20 top-0 start-0 px-8 py-4 bg-[#0f0f0f]/80 backdrop-blur-sm border-b border-emerald-500/10 transition-all duration-300">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <span class="text-sm font-bold tracking-[0.1em] text-emerald-500 mono">
+        LOGIX
+      </span>
+      <button data-collapse-toggle="navbar-default" type="button"
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
+        aria-controls="navbar-default" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+          viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
+        </svg>
+      </button>
+      <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+        <ul
+          class="font-medium text-[14px] flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary">
+          <li>
+            <a href="#home"
+              class="block py-2 px-3 hover:text-white/80 text-emerald-500 transition rounded md:bg-transparent md:text-fg-brand md:p-0"
+              aria-current="page">Home</a>
+          </li>
+          <li>
+            <a href="#about"
+              class="block py-2 px-3 hover:text-white/80 text-emerald-500 transition text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">About</a>
+          </li>
+          <li>
+            <a href="#skills"
+              class="block py-2 px-3 hover:text-white/80 text-emerald-500 transition text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Skills</a>
+          </li>
+          <li>
+            <a href="#contact"
+              class="block py-2 px-3 hover:text-white/80 text-emerald-500 transition text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <!-- Hero Section -->
+  <section class="reveal min-h-screen flex items-center justify-center px-10 py-12 overflow-hidden" id="home">
+    <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 items-center mt-25">
+      <div class="space-y-4 z-10 order-2 lg:order-1">
+        <div class="space-y-1">
+          <p class="mono text-emerald-500 text-xs tracking-[0.2em] font-bold"
+            style="text-shadow: 0 0 15px rgba(16, 185, 129, 0.7)">
+            >> SYSTEM_READY
+          </p>
+          <h1 class="text-4xl md:text-4xl font-bold leading-tight tracking-loose text-white">
+            Hi, I am <br />
+            <span class="bg-gradient-to-r from-emerald-500 via-emerald-300 to-cyan-50 bg-clip-text text-transparent">
+              Oluwafemi Noah
+            </span>
+          </h1>
+        </div>
+
+        <div class="text-gray-200 text-base md:text-md max-w-3xl leading-relaxed border-l-2 border-emerald-500/30 pl-6">
+          Application Security Engineer with experience in <span class="text-emerald-500">Penetration Testing</span> /
+          <span class="text-red-500">Ethical Hacking</span>, securing web development, and vulnerability assessment
+          across offensive and defensive security.
+
+          <div class="pt-4">
+            <h2 class="text-sm mono text-emerald-500 uppercase mb-1"
+              style="text-shadow: 0 0 2px rgba(16, 185, 129, 0.7)">
+              EXTENDED_ROLES:
+            </h2>
+
+            <ul class="space-y-1 text-white/90 text-[15px] font-medium">
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-shield-halved text-emerald-500 w-4 text-center"></i>
+                Application Security
+              </li>
+
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-infinity text-blue-500 w-4 text-center"></i>
+                DevSecOps Engineer
+              </li>
+
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-cubes text-purple-500 w-4 text-center"></i>
+                Product Security Engineer
+              </li>
+
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-magnifying-glass-chart text-orange-500 w-4 text-center"></i>
+                Web Security Analyst
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-3 pt-2">
+          <a href="https://github.com/onlyonelogix" target="_blank" rel="noopener noreferrer">
+            <button
+              class="hover:bg-emerald-900 hover:text-white bg-emerald-600 text-black px-8 py-3 text-[12px] font-bold uppercase tracking-widest transition-all rounded-xs cursor-pointer">
+              VIEW PROJECTS
+            </button>
+          </a>
+          <button
+            class="border border-white/10 hover:bg-white/10 hover:text-emerald-500 text-white px-8 py-3 text-[12px] font-black uppercase tracking-widest transition-all rounded-xs cursor-pointer">
+            DOWNLOAD CV
+          </button>
+        </div>
+      </div>
+
+      <div class="relative order-1 lg:order-2 flex justify-center lg:justify-end">
+        <div
+          class="absolute -right-5 -top-5 w-full h-full bg-emerald-500/5 blur-[80px] rounded-full pointer-events-none">
+        </div>
+
+        <div
+          class="relative w-full max-w-[450px] aspect-[4/5] md:aspect-square lg:aspect-[3/3] overflow-hidden shadow-2xl group rounded-full border border-emerald-500/20">
+          <img src="./resources/img/hero_img.JPG" alt="Oluwafemi Noah"
+            class="object-cover object-top w-full h-full grayscale hover:grayscale-0 transition-all duration-1000 opacity-90 group-hover:opacity-100" />
+
+          <div class="absolute -bottom-1 right-0 left-0 bg-black/85 backdrop-blur-md p-2 pb-5 min-w-[180px]">
+            <div class="mono text-[10px] text-emerald-500 font-bold tracking-widest uppercase text-center">
+              Env: Kali_Linux
+            </div>
+            <div class="text-white font-light text-[13px] italic leading-tight opacity-90 text-center">
+              "Neutralizing vulnerabilities."
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="reveal py-30 px-8 bg-[#0f0f0f] border-t border-emerald-500/30">
+    <div class="max-w-6xl mx-auto text-center space-y-8">
+
+      <div class="max-w-7xl mx-auto text-center items-center jsutify-center mb-10 items-center">
+        <h2 class="text-xs mono text-emerald-500 font-bold uppercase tracking-[0.5em] mb-2">
+          <i data-lucide="user" class="inline-block w-3 h-3 mb-1 mr-2 text-emerald"></i>01_Brief
+        </h2>
+        <h2 class="text-4xl font-bold">About Me</h2>
+      </div>
+
+      <div class="text-base w-20 bg-emerald-500 mx-auto"></div>
+      <p class="text-gray-200 leading-relaxed text-md">
+        "I bridge the gap between complex backend logic and robust security
+        protocols. As an Application Security Engineer and Full-Stack
+        Developer, I build applications that are not just user-friendly, but
+        resilient against modern threats." With a foundation in
+        <span class="text-emerald-500">PHP/Laravel, Python, Node.js, MySQL, PostgreSQL and MongoDB. </span>I
+        architect secure systems while utilizing
+        <span class="text-emerald-500">Python</span> to automate both
+        offensive & defensive security research. Whether acting as a
+        <span class="text-red-600 font-bold">Red Teamer</span>,
+        <span class="text-emerald-500">DevSecOps Engineer</span>, or
+        <span class="text-emerald-500">Application Security Architect</span>,
+        I am dedicated to neutralizing vulnerabilities and securing the web,
+        one line of code at a time.
+      </p>
+    </div>
+  </section>
+
+
+
+  <!-- Skills -->
+  <section id="skills" class="reveal py-30 w-full bg-[#0f0f0f] border-t border-emerald-500/30">
+    <div class="max-w-7xl mx-auto text-center items-center jsutify-center mb-16 items-center">
+      <h2 class="text-xs mono text-emerald-500 font-bold uppercase tracking-[0.5em] mb-2">
+        <i data-lucide="code-2" class="inline-block w-3 h-3 mb-1 mr-2 text-emerald"></i>02_Stack_Analysis
+      </h2>
+      <h2 class="text-center text-4xl font-bold mb-0">Skills</h2>
+    </div>
+    <div
+      class="max-w-7xl mx-auto grid grid-cols-1 px-8 sm:grid-cols-1 sm:px-8 md:grid-cols-2 md:px-8 lg:grid-cols-3 gap-4 lg:px-0">
+      <div
+        class="glass space-y-4 cyber-border items-center text-center border border-emerald-500/10 hover:border-emerald-500/50 p-6 rounded-md">
+        <h3 class="mono text-white font-bold text-center" style="text-shadow: 0 0 4px rgba(16, 185, 129, 0.7)">
+          FRONTEND
+        </h3>
+        <div class="space-y-4 flex gap-8 justify-center">
+          <div class="items-center space-y-2">
+            <i class="fa-brands fa-html5 text-orange-800 text-3xl"></i>
+            <p class="text-md">HTML</p>
+            <p class="text-sm text-white/20 group-hover:text-emerald-500 transition">
+              90%
+            </p>
+          </div>
+          <div class="items-center space-y-2">
+            <i class="fa-solid fa-wind text-orange-800 text-3xl"></i>
+            <p class="text-md">Tailwind</p>
+            <p class="text-sm text-white/20 group-hover:text-emerald-500 transition">
+              90%
+            </p>
+          </div>
+          <div class="items-center space-y-2">
+            <i class="fa-brands fa-js text-orange-900 text-3xl"></i>
+            <p class="text-md">JavaScript</p>
+            <p class="text-sm text-white/20 group-hover:text-emerald-500 transition">
+              75%
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="glass space-y-4 cyber-border items-center text-center border border-emerald-500/10 hover:border-emerald-500/50 p-6 rounded-md">
+        <h3 class="mono text-white font-bold text-center" style="text-shadow: 0 0 4px rgba(16, 185, 129, 0.7)">
+          BACKEND
+        </h3>
+        <div class="space-y-4 flex gap-8 justify-center">
+          <div class="items-center gap-2 space-y-2">
+            <i class="fa-brands fa-php text-orange-800 text-3xl"></i>
+            <p class="text-md">PHP</p>
+            <p class="text-sm text-white/20 group-hover:text-emerald-500 transition">
+              85%
+            </p>
+          </div>
+          <div class="items-center space-y-2">
+            <i class="fa-brands fa-python text-orange-800 text-3xl"></i>
+            <p class="text-md">Python</p>
+            <p class="text-sm text-white/20 group-hover:text-emerald-500 transition">
+              75%
+            </p>
+          </div>
+          <div class="items-center space-y-2">
+            <i class="fa-brands fa-node-js text-orange-800 text-3xl"></i>
+            <p class="text-md">Node.Js</p>
+            <p class="text-sm text-white/20 group-hover:text-emerald-500 transition">
+              70%
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="glass space-y-4 cyber-border items-center text-center border border-emerald-500/10 hover:border-emerald-500/50 p-6 rounded-md">
+        <h3 class="mono text-white font-bold" style="text-shadow: 0 0 4px rgba(16, 185, 129, 0.7)">
+          DATABASE
+        </h3>
+        <div class="space-y-4 flex gap-6 justify-center">
+          <div class="items-center space-y-2">
+            <i class="fa-solid fa-server text-orange-800 text-3xl"></i>
+            <p class="text-md">MySQL</p>
+            <p class="text-sm text-white/20 group-hover:text-emerald-500 transition">
+              85%
+            </p>
+          </div>
+          <div class="items-center space-y-2">
+            <i class="fa-solid fa-database text-orange-800 text-3xl"></i>
+            <p class="text-md">PostgreSQL</p>
+            <p class="text-sm text-white/20 mt-2 group-hover:text-emerald-500 transition">
+              60%
+            </p>
+          </div>
+          <div class="items-center space-y-2">
+            <i class="fa-solid fa-leaf text-orange-800 text-3xl"></i>
+            <p class="text-md">MongoDB</p>
+            <p class="text-sm text-white/20 group-hover:text-emerald-500 transition">
+              85%
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certified Lab Archievements -->
+  <section class="reveal py-35 border-t border-emerald-500/30" id="achievements">
+    <div class="max-w-7xl mx-auto text-center items-center justify-center items-center py-0">
+      <h2 class="text-xs mono text-emerald-500 font-bold uppercase tracking-[0.5em] mb-4">
+        <i data-lucide="award" class="inline-block w-3 h-3 mb-1 mr-2 text-emerald"></i>03_Achievements
+      </h2>
+      <h2 class="text-4xl font-bold pb-6">Certified Labs</h2>
+    </div>
+    <div
+      class="grid grid-cols-1 px-8 text-center max-w-7xl mx-auto gap-4 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:px-0">
+      <div class="glass space-y-2 border border-emerald-500/20 p-6 rounded-md">
+        <i data-lucide="shield-check" class="mx-auto text-emerald-500"></i>
+        <p class="text-sm uppercase text-emerald-500">Security Training</p>
+        <p class="font-bold">PortSwigger Labs</p>
+        <!-- <progress class="w-full h-1.5 bg-gray-300 rounded-full overflow-hidden" value="75" max="100"></progress> -->
+      </div>
+      <div class="glass space-y-2 border border-emerald-500/20 p-6 rounded-md">
+        <i data-lucide="binary" class="mx-auto text-emerald-500"></i>
+        <p class="text-sm uppercase text-emerald-500">Vulnerable Apps</p>
+        <p class="font-bold">OWASP Juice Shop</p>
+      </div>
+      <div class="glass space-y-2 border border-emerald-500/20 p-6 rounded-md">
+        <i data-lucide="terminal" class="mx-auto text-emerald-500"></i>
+        <p class="text-sm uppercase text-emerald-500">Penetration Testing</p>
+        <p class="font-bold">TryHackMe / HTB</p>
+      </div>
+      <div class="glass space-y-2 border border-emerald-500/20 p-6 rounded-md">
+        <i data-lucide="database" class="mx-auto text-emerald-500"></i>
+        <p class="text-sm uppercase text-emerald-500">Web Vulnerabilities</p>
+        <p class="font-bold">DVWA / SQLi Labs</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Security Stack -->
+  <section id="arsenal" class="reveal py-30 px-8 bg-[#0a0a0a] border-t border-emerald-500/30">
+    <div class="max-w-7xl mx-auto">
+      <div class="max-w-7xl mx-auto text-center mb-16">
+        <h2 class="text-xs mono text-emerald-500 font-bold uppercase tracking-[0.5em] mb-1">
+          <i data-lucide="layers" class="inline-block w-3 h-3 mb-1 mr-2"></i>04_System_Arsenal
+        </h2>
+        <h2 class="text-4xl font-bold">The Security Stack</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <div
+          class="glass cyber-border border border-white/5 hover:border-red-500/30 p-10 rounded-xl transition-all group"
+          style="box-shadow: 0 0 50px rgba(239, 68, 68, 0.05)">
+          <div class="flex items-center gap-4 mb-8 border-b border-red-500/10 pb-4">
+            <i data-lucide="zap" class="text-red-500 w-6 h-6"></i>
+            <h3 class="mono text-lg font-bold text-gray-200 uppercase tracking-tighter">Offensive_Ops</h3>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-8 gap-x-4">
+            <div class="space-y-4">
+              <h4 class="text-[10px] mono text-red-500/70 uppercase tracking-widest font-bold">
+                <i data-lucide="search" class="inline-block w-3 h-3 mr-1"></i>Vulnerability_Research
+              </h4>
+              <ul class="space-y-4 text-[13px]">
+                <li class="flex items-center gap-3 text-gray-400">
+                  <i class="fa-solid fa-ghost text-red-500/50 w-4"></i>
+                  <span><b class="text-white">Web:</b> Burp Suite Pro, ZAP</span>
+                </li>
+                <li class="flex items-center gap-3 text-gray-400">
+                  <i class="fa-solid fa-bug-slash text-red-500/50 w-4"></i>
+                  <span><b class="text-white">Fuzzing:</b> Ffuf, GoBuster</span>
+                </li>
+                <li class="flex items-center gap-3 text-gray-400">
+                  <i class="fa-solid fa-skull text-red-500/50 w-4"></i>
+                  <span><b class="text-white">Exploits:</b> Sqlmap, Metasploit</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="space-y-4">
+              <h4 class="text-[10px] mono text-red-500/70 uppercase tracking-widest font-bold">
+                <i data-lucide="binary" class="inline-block w-3 h-3 mr-1"></i>Engineering_&_Discovery
+              </h4>
+              <ul class="space-y-4 text-[13px]">
+                <li class="flex items-center gap-3 text-gray-400">
+                  <i class="fa-brands fa-python text-red-500/50 w-4"></i>
+                  <span><b class="text-white">Python:</b> Custom PoC, Scapy, Socket</span>
+                </li>
+                <li class="flex items-center gap-3 text-gray-400">
+                  <i class="fa-solid fa-radar text-red-500/50 w-4"></i>
+                  <span><b class="text-white">Recon:</b> Nmap, Amass, BeEF</span>
+                </li>
+                <li class="flex items-center gap-3 text-gray-400">
+                  <i class="fa-solid fa-terminal text-red-500/50 w-4"></i>
+                  <span><b class="text-white">Env:</b> Kali Linux (Primary OS)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="glass cyber-border border border-white/5 hover:border-emerald-500/30 p-10 rounded-xl transition-all group"
+          style="box-shadow: 0 0 50px rgba(16, 185, 129, 0.05)">
+          <div class="flex items-center gap-4 mb-8 border-b border-emerald-500/10 pb-4">
+            <i data-lucide="shield-check" class="text-emerald-500 w-6 h-6"></i>
+            <h3 class="mono text-lg font-bold text-gray-200 uppercase tracking-tighter">Defensive_Ops</h3>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-8 gap-x-4">
+            <div class="space-y-4">
+              <h4 class="text-[10px] mono text-emerald-500/70 uppercase tracking-widest font-bold">
+                <i data-lucide="cpu" class="inline-block w-3 h-3 mr-1"></i>Automation_&_Pipeline
+              </h4>
+              <ul class="space-y-4 text-[13px]">
+                <li class="flex items-center gap-3 text-gray-400">
+                  <i class="fa-solid fa-robot text-emerald-500/50 w-4"></i>
+                  <span><b class="text-white">Sec-as-Code:</b> Python (Requests, Boto3)</span>
+                </li>
+                <li class="flex items-center gap-3 text-gray-400">
+                  <i class="fa-solid fa-code text-emerald-500/50 w-4"></i>
+                  <span><b class="text-white">SAST:</b> Semgrep, SonarQube</span>
+                </li>
+                <li class="flex items-center gap-3 text-gray-400">
+                  <i class="fa-brands fa-github text-emerald-500/50 w-4"></i>
+                  <span><b class="text-white">CI/CD:</b> GitHub Actions</span>
+                </li>
+                <li class="flex items-center gap-3 text-gray-400">
+                  <i class="fa-brands fa-docker text-emerald-500/50 w-4"></i>
+                  <span><b class="text-white">IaC:</b> Docker Hardening</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="space-y-4">
+              <h4 class="text-[10px] mono text-emerald-500/70 uppercase tracking-widest font-bold">
+                <i data-lucide="lock" class="inline-block w-3 h-3 mr-1"></i>Hardening_&_Compliance
+              </h4>
+              <ul class="space-y-4 text-[13px]">
+                <li class="flex items-center gap-3 text-gray-400">
+                  <i class="fa-solid fa-magnifying-glass-shield text-emerald-500/50 w-4"></i>
+                  <span><b class="text-white">VA:</b> Nessus, Qualys</span>
+                </li>
+                <li class="flex items-center gap-3 text-gray-400">
+                  <i class="fa-solid fa-file-shield text-emerald-500/50 w-4"></i>
+                  <span><b class="text-white">Standards:</b> OWASP ASVS</span>
+                </li>
+                <li class="flex items-center gap-3 text-gray-400">
+                  <i class="fa-solid fa-key text-emerald-500/50 w-4"></i>
+                  <span><b class="text-white">Secrets:</b> Vault, JWT</span>
+                </li>
+                <li class="flex items-center gap-3 text-gray-400">
+                  <i class="fa-solid fa-wall-brick text-emerald-500/50 w-4"></i>
+                  <span><b class="text-white">WAF:</b> Cloudflare</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Expertise -->
+  <section id="expertise" class="reveal py-30 px-8 bg-[#060606] border-t border-emerald-500/30">
+    <div class="max-w-7xl mx-auto">
+      <div class="max-w-7xl mx-auto text-center items-center jsutify-center mb-16 items-center">
+        <h2 class="text-xs mono text-emerald-500 font-bold uppercase tracking-[0.5em] mb-1">
+          <i data-lucide="shield-check" class="inline-block w-3 h-3 mb-1 mr-2 text-emerald"></i>05_Brief
+        </h2>
+        <h2 class="text-center text-4xl font-bold mb-0">Expertise</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
+        <div class="glass-card p-6 rounded-xl">
+          <i data-lucide="shield-check" class="w-10 h-10 text-emerald-500 mb-6"></i>
+          <h3 class="text-xl font-bold text-white/80 mb-4">
+            Application Security
+          </h3>
+          <p class="text-gray-400 text-md">
+            Vulnerability assessment and penetration testing of web applications.
+          </p>
+          <p class="text-gray-400 text-md">Secure code review and remediation guidance.</p>
+          <p class="text-gray-400 text-md">OWASP Top 10 testing, authentication security, and API security
+            assessments.</p>
+        </div>
+
+        <div class="glass-card p-6 rounded-xl">
+          <i data-lucide="workflow" class="w-10 h-10 text-emerald-500 mb-4"></i>
+          <h3 class="text-xl font-bold text-white/80 mb-4">
+            DevSecOps Engineer
+          </h3>
+          <p class="text-gray-400 text-md">
+            Integrating security throughout the software development lifecycle (SDLC).
+          </p>
+          <p class="text-gray-400 text-md">Security automation, dependency analysis, and CI/CD security
+            practices.</p>
+          <p class="text-gray-400 text-md">Container security, monitoring, and infrastructure hardening.</p>
+        </div>
+
+        <div class="glass-card p-6 rounded-xl">
+          <i data-lucide="shield-user" class="w-10 h-10 text-emerald-500 mb-6"></i>
+          <h3 class="text-xl font-bold text-white/80 mb-4">Product Security</h3>
+          <p class="text-gray-400 text-md">
+            Security-focused feature design and risk assessment.
+          </p>
+          <p class="text-gray-400 text-md">
+            Threat modeling and security architecture review.
+          </p>
+          <p class="text-gray-400 text-md">
+            Vulnerability management and security requirements validation.
+          </p>
+        </div>
+
+        <div class="glass-card p-6 rounded-xl">
+          <i data-lucide="globe-lock" class="w-10 h-10 text-emerald-500 mb-6"></i>
+          <h3 class="text-xl font-bold text-white/80 mb-4">Web Security Analyst</h3>
+          <p class="text-gray-400 text-md">
+            Manual testing for web application vulnerabilities.
+          </p>
+          <p class="text-gray-400 text-md">
+            Authentication, authorization, and session management assessments.
+          </p>
+          <p class="text-gray-400 text-md">
+            Security monitoring, attack detection, and incident investigation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="reveal py-30 px-8 border-t border-emerald-500/30">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-xs mono text-emerald-500 font-bold uppercase tracking-[0.5em] mb-8">
+        <i data-lucide="send" class="inline-block w-3 h-3 mb-1 mr-2 text-emerald"></i>06_Connection
+      </h2>
+      <h3 class="text-5xl font-bold text-white mb-12 tracking-tighter">Discuss Your Project</h3>
+
+      <div id="formStatus" class="hidden mono text-xs mb-4 p-3 border bg-black/50"></div>
+
+      <form id="auditForm" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+        <div class="space-y-2">
+          <label class="mono text-[12px] text-gray-500 uppercase">Identity</label>
+          <input type="text" id="userName" placeholder="Full Name" required
+            class="w-full p-4 text-white rounded-lg bg-white/5 border border-white/10 focus:border-emerald-500 outline-none" />
+        </div>
+        <div class="space-y-2">
+          <label class="mono text-[12px] text-gray-500 uppercase">Endpoint</label>
+          <input type="email" id="userEmail" placeholder="Email Address" required
+            class="w-full p-4 text-white rounded-lg bg-white/5 border border-white/10 focus:border-emerald-500 outline-none" />
+        </div>
+        <div class="md:col-span-2 space-y-2">
+          <label class="mono text-[12px] text-gray-500 uppercase">Message_Payload</label>
+          <textarea id="userMessage" rows="5" placeholder="Project details or audit request..." required
+            class="w-full p-4 text-white rounded-lg bg-white/5 border border-white/10 focus:border-emerald-500 outline-none"></textarea>
+        </div>
+        <button type="submit" id="submitBtn"
+          class="md:col-span-2 cursor-pointer hover:bg-emerald-900 hover:text-white bg-emerald-600 text-black py-5 font-black uppercase tracking-[0.2em] text-[12px] rounded transition-all">
+          Send Secure Transmission
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="py-10 px-8 text-center border-t border-emerald-500/30 justify-center items-center">
+    <div class="flex gap-6 justify-center mx-auto mb-2">
+      <a href="https://www.linkedin.com/in/oluwafemi-taiwo-961a3638a" target="_blank"
+        class="text-emerald-500 hover:text-white transition-colors" title="LinkedIn">
+        <i class="fa-brands fa-linkedin w-4 h-4 text-blue-600"></i>
+      </a>
+      <a href="https://wa.me/+248168114148" target="_blank" class="text-emerald-500 hover:text-white transition-colors"
+        title="WhatsApp">
+        <i class="fa-brands fa-whatsapp text-green-500 w-4 h-4"></i>
+      </a>
+      <a href="mailto:femilogix@gmail.com" target="_blank" class="text-emerald-500 hover:text-white transition-colors"
+        title="Email">
+        <i class="fa-solid fa-envelope text-red-500 w-4 h-4"></i>
+      </a>
+      <a href="tel:+2348168114148" target="_blank" class="text-emerald-500 hover:text-white transition-colors"
+        title="Phone">
+        <i class="fa-solid fa-phone text-blue-500 w-4 h-4"></i>
+      </a>
+    </div>
+    <div class="">
+      <p class="mono text-[11px] text-gray-300 tracking-widest uppercase w-70 mx-auto sm:w-100">
+        © 2026 LOGIX // ENCRYPTED DATA TRANSFER ONLY
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="./resources/js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.10.8/sweetalert2.all.min.js"></script>
+  <script src="./resources/js/formhandler.js"></script>
+
+</body>
+</body>
+</body>
+
+</html>

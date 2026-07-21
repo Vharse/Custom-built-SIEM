@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token_value }}">
+    <title>Admin | Dashboard</title>
+    <script src="./js/security.js"></script>
+    <link rel="stylesheet" href="../resources/css/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-[#0a0a0a] text-gray-200 flex h-screen overflow-hidden">
+    <div id="admin_sidebar-target"></div>
+
+    <main class="flex-1 lg:ml-64 p-4 md:p-8 h-screen flex flex-col overflow-hidden transition-all duration-300">
+        <header class="flex justify-between items-center mb-0 flex-shrink-0">
+            <div>
+                <h2 class="text-4xl font-bold text-white pb-2" id="dashboard-title">System Overview</h2>
+                <p class="text-gray-500 text-sm font-mono tracking-tighter pt-2 pb-2">Env: Production_Stable // Auth:
+                    Verified //
+                    User: logix</p>
+            </div>
+            <div id="connection-status"
+                class="flex items-center gap-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full">
+                <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                <span class="text-[10px] text-emerald-500 font-bold uppercase">Backend_Linked</span>
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto pr-2 space-y-4 no-scrollbar">
+
+            <section id="panel-overview" class="dashboard-panel space-y-8">
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div
+                        class="bg-[#111]/70 p-6 rounded-lg border border-amber-500/20 shadow-xl relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-0 h-full bg-amber-500 transition-all duration-300"></div>
+                        <p class="text-gray-500 text-[10px] uppercase font-bold tracking-widest mb-1">Incoming Packets
+                        </p>
+                        <div class="flex items-end gap-2">
+                            <h3 id="msg-count" class="text-4xl font-bold text-white">...</h3>
+                            <span class="text-emerald-500 text-[10px] mb-1 font-mono">Total_Logs</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-[#111] p-6 rounded-lg border border-blue-500/20 shadow-xl relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-blue-500 transition-all duration-300"></div>
+                        <p class="text-gray-500 text-[10px] uppercase font-bold tracking-widest mb-1">Audit Trail</p>
+                        <div class="flex items-end gap-2">
+                            <h3 id="audit-count" class="text-4xl font-bold text-blue-500">0</h3>
+                            <span class="text-blue-500 text-[10px] mb-1 font-mono">Operations</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-[#111] p-6 rounded-lg border border-emerald-500/20 shadow-xl relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500 transition-all duration-300"></div>
+                        <p class="text-gray-500 text-[10px] uppercase font-bold tracking-widest mb-1">Security Status
+                        </p>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="flex h-2 w-2 relative">
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                            </span>
+                            <h3 class="text-xl font-bold text-emerald-500 tracking-wider font-mono">HARDENED_KERNEL</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                    <div class="bg-[#111] border border-emerald-500/20 rounded-lg p-5 space-y-4">
+                        <div class="flex justify-between items-center border-b border-emerald-500/20 pb-3">
+                            <span
+                                class="text-white font-mono text-[11px] uppercase font-bold tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-envelope text-emerald-500/70"></i> INGRESS_STREAM_BUFFER
+                            </span>
+                            <span
+                                class="text-[9px] bg-emerald-500/10 text-emerald-400 font-mono px-2 py-0.5 rounded border border-emerald-500/10">ACTIVE_MIRROR</span>
+                        </div>
+
+                        <div class="overflow-x-auto rounded border border-white/5 bg-black/40">
+                            <table class="w-full text-left border-collapse">
+                                <thead class="bg-black/60 text-[9px] text-gray-500 uppercase tracking-widest">
+                                    <tr>
+                                        <th class="p-3 font-bold border-b border-white/5">Sender</th>
+                                        <th class="p-3 font-bold border-b border-white/5">Payload Snippet</th>
+                                        <th class="p-3 font-bold border-b border-white/5 text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="overview-message-body-fallback"
+                                    class="divide-y divide-white/5 text-xs font-mono text-gray-400">
+                                    <tr>
+                                        <td colspan="3" class="p-6 text-center text-gray-600 text-[11px]">
+                                            <i class="fa-solid fa-terminal animate-pulse mr-1 text-emerald-500/50"></i>
+                                            Waiting for backend ingress thread compilation...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#111] border border-blue-500/20 rounded-lg p-5 space-y-4">
+                        <div class="flex justify-between items-center border-b border-blue-500/20 pb-3">
+                            <span
+                                class="text-white font-mono text-[11px] uppercase font-bold tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-shield-halved text-blue-500/70"></i> RASP_THREAT_MONITOR
+                            </span>
+                            <span
+                                class="text-[9px] bg-blue-500/10 text-blue-400 font-mono px-2 py-0.5 rounded border border-blue-500/10">TELEMETRY_FEED</span>
+                        </div>
+
+                        <div
+                            class="overflow-x-auto max-h-[250px] overflow-y-auto no-scrollbar rounded border border-white/5 bg-black/40">
+                            <table class="w-full text-left border-collapse">
+                                <thead
+                                    class="bg-black/60 text-[9px] text-gray-500 uppercase tracking-widest sticky top-0 z-10">
+                                    <tr>
+                                        <th class="p-3 font-bold border-b border-white/5">Event_Vector</th>
+                                        <th class="p-3 font-bold border-b border-white/5">Source_IP</th>
+                                        <th class="p-3 font-bold border-b border-white/5 text-center">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="overview-audit-body-fallback"
+                                    class="divide-y divide-white/5 text-xs font-mono text-gray-400">
+                                    <tr>
+                                        <td colspan="3" class="p-6 text-center text-gray-600 text-[11px]">
+                                            <i
+                                                class="fa-solid fa-network-wired animate-pulse mr-1 text-blue-500/50"></i>
+                                            Monitoring Layer-7 perimeter validation queues...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-[#111] border border-emerald-500/20 rounded-lg p-5">
+                    <div class="border-b border-white/5 pb-3 mb-4">
+                        <span
+                            class="text-white font-mono text-[11px] uppercase font-bold tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-sliders text-amber-500/70"></i> PERIMETER_OPERATIONAL_CONTROLS
+                        </span>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center font-mono">
+                        <div
+                            class="p-3 bg-black/40 border border-emerald-500/20 rounded-lg hover:border-white-500/20 transition-all">
+                            <span class="text-gray-600 text-[9px] block uppercase">Pydantic Filtering</span>
+                            <span class="text-emerald-400 text-xs font-bold uppercase">STricT_ENFORCED</span>
+                        </div>
+                        <div
+                            class="p-3 bg-black/40 border border-blue-500/20 rounded-lg hover:border-white-500/20 transition-all">
+                            <span class="text-gray-600 text-[9px] block uppercase">Audit Logging</span>
+                            <span class="text-blue-400 text-xs font-bold uppercase">ASYNC_VAULTING</span>
+                        </div>
+                        <div
+                            class="p-3 bg-black/40 border border-red-500/20 rounded-lg hover:border-white-500/20 transition-all">
+                            <span class="text-gray-600 text-[9px] block uppercase">Session Handshake</span>
+                            <span class="text-red-400 text-xs font-bold uppercase">HTTP_ONLY_COOKIE</span>
+                        </div>
+                        <div
+                            class="p-3 bg-black/40 border border-amber-500/20 rounded-lg hover:border-white-500/20 transition-all">
+                            <span class="text-gray-600 text-[9px] block uppercase">Response Vector</span>
+                            <span class="text-amber-400 text-xs font-bold uppercase">JSON_REST_KERNEL</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="panel-inquiries" class="dashboard-panel hidden space-y-4">
+                <div class="border-b border-white/5 pb-2">
+                    <p class="text-gray-400 font-mono text-[15px] mt-0">Message History</p>
+                </div>
+                <div
+                    class="overflow-x-auto max-h-[400px] overflow-y-auto no-scrollbar bg-gray-950 rounded-lg border border-white/5">
+                    <table class="w-full text-left border-collapse">
+                        <thead
+                            class="bg-black/60 text-[10px] text-emerald-500 uppercase tracking-widest sticky top-0 z-10">
+                            <tr>
+                                <th class="p-4 font-bold border-b border-white/5">Name</th>
+                                <th class="p-4 font-bold border-b border-white/5">Email</th>
+                                <th class="p-4 font-bold border-b border-white/5">Payload / Message</th>
+                                <th class="p-4 font-bold border-b border-white/5">Timestamp</th>
+                                <th class="p-4 font-bold border-b border-white/5">Status</th>
+                                <th class="p-4 font-bold border-b border-white/5 text-center w-32">Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody id="message-body" class="divide-y divide-white/5 text-sm">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="panel-audit-logs" class="dashboard-panel hidden space-y-6">
+                <div class="flex justify-between items-center border-b border-white/5 pb-4 mb-2">
+                    <div>
+                        <h3 class="text-white/50 text-sm font-bold uppercase tracking-normal">SIEM_LOG_MASTER_REPOSITORY
+                        </h3>
+                        <p class="text-gray-500 font-mono text-xs mt-1">Reviewing expanded forensic data-grid alerts
+                            and intercept contexts</p>
+                    </div>
+                    <button onclick="window.DashboardManager.loadAuditLogs()"
+                        class="px-3 py-1.5 bg-[#111] border border-white/5 hover:border-emerald-500/30 text-gray-200 hover:text-white font-mono text-[10px] rounded-full transition-all duration-150 cursor-pointer flex items-center gap-1.5">
+                        <i class="fa-solid fa-rotate text-[12px]"></i> REFRESH_STREAM
+                    </button>
+                </div>
+
+                <div
+                    class="overflow-x-auto max-h-[400px] overflow-y-auto no-scrollbar bg-gray-950 rounded-lg border border-emerald-500/20">
+                    <table class="w-full text-left border-collapse bg-[#111]">
+                        <thead
+                            class="bg-[#111] text-[11px] text-emerald-500 uppercase tracking-widest sticky top-0 z-10">
+                            <tr>
+                                <th class="p-4 border-b border-emerald-500/20">Event_Timestamp</th>
+                                <th class="p-4 border-b border-emerald-500/20">Event_Type</th>
+                                <th class="p-4 border-b border-emerald-500/20">Source_IP</th>
+                                <th class="p-4 border-b border-emerald-500/20">Origin_Location</th>
+                                <th class="p-4 border-b border-emerald-500/20">Status</th>
+                                <th class="p-4 border-b border-emerald-500/20 text-center">Mitigation_Controls</th>
+                            </tr>
+                        </thead>
+                        <tbody id="master-audit-log-body" class="text-xs divide-y divide-emerald-500/5 font-mono">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="panel-security-inbox" class="dashboard-panel hidden space-y-6">
+                <div class="border-b border-white/5 pb-4">
+                    <p class="text-gray-400 font-mono text-[15px]">Prioritized Security Inbox</p>
+                </div>
+                <div class="overflow-x-auto bg-gray-950 rounded-lg border border-red-500/20">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-black/60 text-[10px] text-red-500 uppercase tracking-widest">
+                            <tr>
+                                <th class="p-4 font-bold border-b border-white/5">Source_IP</th>
+                                <th class="p-4 font-bold border-b border-white/5">Action_Vector</th>
+                                <th class="p-4 font-bold border-b border-white/5 text-center">Status</th>
+                                <th class="p-4 font-bold border-b border-white/5 text-center">Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody id="security-inbox-body" class="divide-y divide-white/5 text-sm">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="panel-audit-logs" class="dashboard-panel hidden space-y-4">
+                <div class="overflow-x-auto bg-gray-950 rounded-lg border border-emerald-500/20">
+                    <table class="w-full text-left border-collapse bg-[#111]">
+                        <thead class="bg-black/40 text-[10px] text-emerald-500 uppercase tracking-widest">
+                            <tr>
+                                <th class="p-4 border-b border-emerald-500/20">Event_Timestamp</th>
+                                <th class="p-4 border-b border-emerald-500/20">Event_Type</th>
+                                <th class="p-4 border-b border-emerald-500/20">Source_IP</th>
+                            </tr>
+                        </thead>
+                        <tbody id="master-audit-log-body" class="text-xs divide-y divide-emerald-500/5 font-mono">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <section id="panel-analytics" class="dashboard-panel hidden space-y-6">
+                <div class="flex justify-between items-center border-b border-white/5 pb-4 mb-2">
+                    <div>
+                        <h3 class="text-white text-sm font-bold uppercase tracking-widest">SYSTEM ANALYTICS
+                        </h3>
+                        <p class="text-gray-500 font-mono text-[12px] mt-0.5">Aggregated forensic insights, packet
+                            volume
+                            trends, and security threat vectors</p>
+                    </div>
+                    <button onclick="window.DashboardManager.renderAnalyticsCharts()"
+                        class="px-3 py-1.5 bg-[#111] border border-white/5 hover:border-emerald-500/30 text-gray-400 hover:text-white font-mono text-[10px] rounded-sm transition-all duration-150 cursor-pointer flex items-center gap-1.5">
+                        <i class="fa-solid fa-chart-bar text-[9px]"></i> RE-MAP_DATA_CHART
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="bg-[#111] p-4 rounded border border-emerald-500/20 font-mono">
+                        <p class="text-gray-500 text-[10px] uppercase font-bold tracking-widest mb-1">Mitigation Rate
+                        </p>
+                        <h3 class="text-2xl font-bold text-emerald-400">100%</h3>
+                        <span class="text-[10px] text-gray-500 block mt-1">NO_PACKET_LOSS_DETECTION</span>
+                    </div>
+                    <div class="bg-[#111] p-4 rounded border border-red-500/20 font-mono">
+                        <p class="text-gray-500 text-[10px] uppercase font-bold tracking-widest mb-1">Active Firewall
+                            Drops
+                        </p>
+                        <h3 class="text-2xl font-bold text-red-400" id="analytics-alert-count">0</h3>
+                        <span class="text-[10px] text-gray-600 block mt-1">INTERCEPTED_SIGNATURES</span>
+                    </div>
+                    <div class="bg-[#111] p-4 rounded border border-emerald-500/20 font-mono">
+                        <p class="text-gray-500 text-[10px] uppercase font-bold tracking-widest mb-1">Total Web
+                            Inquiries
+                        </p>
+                        <h3 class="text-2xl font-bold text-white" id="analytics-msg-count">0</h3>
+                        <span class="text-[10px] text-gray-600 block mt-1">CONTACT_FORM_INGRESS</span>
+                    </div>
+                    <div class="bg-[#111] p-4 rounded border border-amber-500/20 font-mono">
+                        <p class="text-gray-500 text-[10px] uppercase font-bold tracking-widest mb-1">Monitored Vectors
+                        </p>
+                        <h3 class="text-2xl font-bold text-amber-400">CORE_API</h3>
+                        <span class="text-[10px] text-gray-600 block mt-1">PORT_LISTENING</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-[#111] p-5 rounded border border-emerald-500/20 flex flex-col items-center">
+                        <div class="w-full border-b border-white/5 pb-2 mb-4 text-left">
+                            <span
+                                class="text-gray-400 font-mono text-[11px] uppercase font-bold tracking-wider flex items-center gap-1.5">
+                                <i class="fa-solid fa-pie-chart text-red-500/70"></i> Distribution_Analysis
+                            </span>
+                        </div>
+                        <div class="w-full max-w-[280px] h-[280px] flex items-center justify-center">
+                            <canvas id="threatDistributionChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#111] p-5 rounded border border-emerald-500/20">
+                        <div class="w-full border-b border-white/5 pb-2 mb-4">
+                            <span
+                                class="text-gray-400 font-mono text-[11px] uppercase font-bold tracking-wider flex items-center gap-1.5">
+                                <i class="fa-solid fa-timeline text-emerald-500/70"></i> Ingress_Timeline_24H
+                            </span>
+                        </div>
+                        <div class="w-full h-[280px]">
+                            <canvas id="ingressTimelineChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- settings configuration panel -->
+            <section id="panel-settings" class="dashboard-panel space-y-6 hidden animate-fadeIn">
+
+                <div class="flex items-center justify-between border-b border-white/5 pb-4">
+                    <div>
+                        <h3 class="text-sm font-bold uppercase tracking-wider font-mono text-white">System Operational
+                            Profiles</h3>
+                        <p class="text-sm text-gray-500 font-mono">Configure Layer-7 validation parameters and defensive
+                            posture metrics.</p>
+                    </div>
+                    <span
+                        class="px-2 py-0.5 rounded text-[9px] font-bold uppercase font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 tracking-widest">KERNEL_LOCKED</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div
+                        class="bg-zinc-950/40 backdrop-blur-md border border-emerald-500/20 rounded-xl p-5 space-y-4 shadow-xl">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2.5">
+                                <div
+                                    class="p-2 bg-emerald-500/10 rounded border border-emerald-500/10 text-emerald-400">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-white font-mono uppercase tracking-tight">Pydantic
+                                        Filtering Matrix</h4>
+                                    <p class="text-[11px] text-gray-500 font-mono">Strict type casting on incoming JSON
+                                        nodes.</p>
+                                </div>
+                            </div>
+
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="switch-pydantic_filtering"
+                                    data-feature-key="pydantic_filtering"
+                                    onchange="window.DashboardManager.requestMutationConfirmation('pydantic_filtering', this.checked)"
+                                    class="sr-only peer" checked>
+                                <div
+                                    class="w-9 h-5 bg-white/5 border border-white/10 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-zinc-950 after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-gray-400 after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-emerald-500/20 peer-checked:border-emerald-500/40 peer-checked:after:bg-emerald-400">
+                                </div>
+                            </label>
+                        </div>
+                        <p class="text-xs text-gray-400 font-mono leading-relaxed">Forces automatic interception of
+                            structural anomalies, parsing data parameters rigorously before database insertion passes.
+                        </p>
+                    </div>
+
+                    <div
+                        class="bg-zinc-950/40 backdrop-blur-md border border-amber-500/20 rounded-xl p-5 space-y-4 shadow-xl">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2.5">
+                                <div class="p-2 bg-amber-500/10 rounded border border-amber-500/10 text-amber-400">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-white font-mono uppercase tracking-tight">SIEM
+                                        Audit
+                                        Logging</h4>
+                                    <p class="text-[11px] text-gray-500 font-mono">Asynchronous log vaulting for failure
+                                        exceptions.</p>
+                                </div>
+                            </div>
+
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="switch-audit_logging" data-feature-key="audit_logging"
+                                    onchange="window.DashboardManager.requestMutationConfirmation('audit_logging', this.checked)"
+                                    class="sr-only peer" checked>
+                                <div
+                                    class="w-9 h-5 bg-white/5 border border-white/10 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-zinc-950 after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-gray-400 after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-amber-500/20 peer-checked:border-amber-500/40 peer-checked:after:bg-amber-400">
+                                </div>
+                            </label>
+                        </div>
+                        <p class="text-xs text-gray-400 font-mono leading-relaxed">Streams failed login schemas and
+                            hostile
+                            SQLi payloads directly into immutable event trails for background monitoring panels.</p>
+                    </div>
+
+                    <div
+                        class="bg-zinc-950/40 backdrop-blur-md border border-red-500/20 rounded-xl p-5 space-y-4 shadow-xl">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2.5">
+                                <div class="p-2 bg-red-500/10 rounded border border-red-500/10 text-red-400">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-white font-mono uppercase tracking-tight">Ingress
+                                        Throttling</h4>
+                                    <p class="text-[11px] text-gray-500 font-mono">Enforce microsecond rate ceilings per
+                                        IP
+                                        node.</p>
+                                </div>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="switch-ingress_throttling"
+                                    data-feature-key="ingress_throttling"
+                                    onchange="window.DashboardManager.requestMutationConfirmation('ingress_throttling', this.checked)"
+                                    class="sr-only peer" checked>
+                                <div
+                                    class="w-9 h-5 bg-white/5 border border-white/10 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-zinc-950 after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-gray-400 after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-red-500/20 peer-checked:border-red-500/40 peer-checked:after:bg-red-400">
+                                </div>
+                            </label>
+                        </div>
+                        <p class="text-xs text-gray-400 font-mono leading-relaxed">Limits connections to a maximum of 5
+                            requests per minute per IP address on contact form endpoints to mitigate automated database
+                            floods.</p>
+                    </div>
+
+                    <div
+                        class="bg-zinc-950/40 backdrop-blur-md border border-amber-500/20 rounded-xl p-5 space-y-4 shadow-xl">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2.5">
+                                <div class="p-2 bg-amber-500/10 rounded border border-amber-500/10 text-amber-400">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 001 1h6a2 2 0 110 4h-1a1 1 0 00-1 1v3a1 1 0 01-1 1h-3a1 1 0 00-1 1v1a2 2 0 11-4 0v-1a1 1 0 00-1-1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+                                    </svg>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-xs font-bold text-white font-mono uppercase tracking-tight">Sandbox
+                                        Environment</h4>
+                                    <p class="text-[11px] text-gray-500 font-mono">Redirect state modifications to
+                                        simulated
+                                        memory containers.</p>
+                                </div>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="switch-sandbox_mode" data-feature-key="sandbox_mode"
+                                    onchange="window.DashboardManager.requestMutationConfirmation('sandbox_mode', this.checked)"
+                                    class="sr-only peer">
+                                <div
+                                    class="w-9 h-5 bg-white/5 border border-white/10 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-zinc-950 after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-gray-400 after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-amber-500/20 peer-checked:border-amber-500/40 peer-checked:after:bg-amber-400">
+                                </div>
+                            </label>
+                        </div>
+                        <p class="text-xs text-gray-400 font-mono leading-relaxed">Puts database interaction routes into
+                            read-only simulation mode, letting you analyze incoming malicious scripts without exposing
+                            data
+                            arrays to changes.</p>
+                    </div>
+
+                    <div
+                        class="bg-zinc-950/40 backdrop-blur-md border border-red-500/20 rounded-xl p-5 space-y-4 shadow-xl md:col-span-1">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2.5">
+                                <div class="p-2 bg-red-500/10 rounded border border-red-500/10 text-red-400">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-16v4H10V4h4z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-white font-mono uppercase tracking-tight">Volatile
+                                        Cache Flush</h4>
+                                    <p class="text-[11px] text-gray-500 font-mono">Evict local memory caches and force a
+                                        hardware sync loop.</p>
+                                </div>
+                            </div>
+                            <button onclick="window.DashboardManager.purgeVolatileCache()"
+                                class="px-3 py-1.5 bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 text-red-400 text-xs font-mono font-bold uppercase rounded transition cursor-pointer">
+                                Flush_Memory
+                            </button>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-zinc-950/40 backdrop-blur-md border border-red-500/20 rounded-xl p-5 space-y-4 shadow-xl">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2.5">
+                                <div class="p-2 bg-red-500/10 rounded border border-red-500/20 text-red-400">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-white font-mono uppercase tracking-tight">Revoke
+                                        Authentication Session</h4>
+                                    <p class="text-[11px] text-gray-500 font-mono">Purge server-side HttpOnly handshakes
+                                        immediately.</p>
+                                </div>
+                            </div>
+                            <button onclick="window.DashboardManager.terminateAdminSession()"
+                                class="px-3 py-1.5 bg-red-600/10 border border-red-500/20 hover:bg-red-600/30 text-red-400 text-xs font-mono font-bold uppercase rounded transition cursor-pointer tracking-wider">
+                                TERMINATE_SESSION
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 font-mono leading-relaxed">Invalidates current JWT/cookie
+                            tokens,
+                            flashes a destructive wipe command to local state variables, and securely forces immediate
+                            relocation to the authentication vault login page.</p>
+                    </div>
+
+                    <div
+                        class="bg-zinc-950/40 backdrop-blur-md border border-purple-500/20 rounded-xl p-5 space-y-4 shadow-xl">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2.5">
+                                <div class="p-2 bg-purple-500/10 rounded border border-purple-500/10 text-purple-400">
+                                    <i class="fa-solid fa-microchip"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-white font-mono uppercase tracking-tight">
+                                        Threshold
+                                        Sentinel</h4>
+                                    <p class="text-[11px] text-gray-500 font-mono">3+ Hits/60s = AUTO_BLOCK</p>
+                                </div>
+                            </div>
+                            <div class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 font-mono leading-relaxed">Active Threat Hunting: Automatic
+                            mitigation triggered when source IP exceeds frequency limits.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div id="forensic-modal"
+                    class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+                    <div
+                        class="bg-[#0f0f0f] border border-white/10 w-full max-w-4xl rounded-xl shadow-2xl overflow-hidden flex flex-col h-[90vh] md:h-[75vh]">
+
+                        <div
+                            class="p-4 bg-[#141414] border-b border-white/5 flex justify-between items-center flex-shrink-0">
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                                <h3 id="modal-alert-title"
+                                    class="text-white font-mono text-xs font-bold tracking-tight uppercase">
+                                    🚨 RASP_MULTIPLE_IP_VECTORS_DETECTED // INTERNAL_SYS_BUFFER
+                                </h3>
+                            </div>
+                            <button onclick="window.DashboardManager.closeForensicModal()"
+                                class="text-gray-500 hover:text-white transition cursor-pointer">
+                                <i class="fa-solid fa-xmark text-sm"></i>
+                            </button>
+                        </div>
+
+                        <div class="p-5 flex-1 overflow-y-auto space-y-4 no-scrollbar font-mono text-xs text-gray-300">
+                            <div
+                                class="flex flex-col sm:flex-row sm:justify-between border-b border-white/5 pb-2 gap-1">
+                                <span>TARGET VECTOR NODE: <span id="modal-ip-display"
+                                        class="text-white font-bold">0.0.0.0</span></span>
+                                <div class="flex gap-4">
+                                    <span class="text-gray-500">SIGNATURE: <span id="modal-signature-ref"
+                                            class="text-blue-400 font-bold">SIEM_ALERT</span></span>
+                                    <span class="text-gray-500">TIMESTAMP: <span id="modal-time-display"
+                                            class="text-gray-400">00:00:00</span></span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p class="text-[10px] text-gray-500 mb-1 tracking-wider uppercase">INTERCEPTED PAYLOAD
+                                    CONTEXT</p>
+                                <div id="modal-payload-display"
+                                    class="p-3 bg-black/40 border border-white/5 rounded text-red-400 font-mono text-[11px] h-20 overflow-y-auto whitespace-pre-wrap">
+                                    No payload context extracted.
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 h-72 md:h-64">
+
+                                <div
+                                    class="border border-white/5 bg-white/5 rounded-lg p-3 flex flex-col h-full overflow-hidden">
+                                    <p
+                                        class="text-[10px] text-gray-500 mb-2 tracking-wider uppercase flex items-center gap-1 flex-shrink-0">
+                                        <i class="fa-solid fa-user-ninja text-[9px]"></i> HUMAN ANALYST CONTEXT
+                                    </p>
+                                    <div id="human-notes-stream"
+                                        class="space-y-2.5 overflow-y-auto flex-grow pr-1 text-[11px] leading-relaxed no-scrollbar">
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="border border-white/5 bg-black/50 rounded-lg p-3 flex flex-col h-full relative overflow-hidden">
+                                    <p
+                                        class="text-[10px] text-blue-400 mb-2 tracking-wider uppercase flex items-center gap-1 flex-shrink-0">
+                                        <i class="fa-solid fa-brain text-[9px]"></i> RASP_AI_FORENSIC_KERNEL
+                                    </p>
+                                    <div id="ai-forensic-pane"
+                                        class="overflow-y-auto pr-1 text-gray-400 text-[11px] leading-relaxed no-scrollbar flex-grow">
+                                    </div>
+                                    <div
+                                        class="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-black to-transparent pointer-events-none">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-[#141414] border-t border-white/5 flex gap-2 justify-end flex-shrink-0">
+                            <button id="modal-btn-investigate"
+                                class="px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/20 text-blue-400 rounded text-[10px] uppercase font-bold transition flex items-center gap-1 cursor-pointer">
+                                <i class="fa-solid fa-file-waveform"></i> Investigate Database Logs
+                            </button>
+                            <button id="modal-btn-block"
+                                class="px-3 py-1.5 bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 text-red-400 rounded text-[10px] uppercase font-bold transition flex items-center gap-1 cursor-pointer">
+                                <i class="fa-solid fa-ban"></i> Block Attacker IP
+                            </button>
+                            <button id="modal-btn-resolve"
+                                class="px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 hover:bg-emerald-500/20 text-emerald-400 rounded text-[10px] uppercase font-bold transition flex items-center gap-1 cursor-pointer">
+                                <i class="fa-solid fa-check-double"></i> Mark Resolved
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/admin_dash.js" defer></script>
+    <script src="./js/admin_sidebar.js" defer></script>
+</body>
+
+</html>
