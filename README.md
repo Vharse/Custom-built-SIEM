@@ -1,4 +1,4 @@
-# SYSTRM INFORMATION & EVENT MANAGEMENT (SIEM)
+# SIEM-Powered Cybersecurity Portfolio
 
 An enterprise-grade personal portfolio and secure data ingress gateway. Built inside a containerized **Kali Linux** environment, the system utilizes a decoupled architecture: a hardened **FastAPI (Python)** backend kernel serving a framework-free, premium **Tailwind CSS** glassmorphism dashboard.
 
