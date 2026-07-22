@@ -47,7 +47,7 @@ if not _temp_api_key:
     )
 
 ai_client = genai.Client(api_key=_temp_api_key)
-client = genai.Client(api_key=_temp_api_key)
+# client = genai.Client(api_key=_temp_api_key)
 
 del _temp_api_key
 
@@ -207,7 +207,7 @@ async def commit_system_configuration_override(
 
 @router.post("/logout", status_code=status.HTTP_200_OK)
 async def terminate_admin_session_handshake(response: Response):
-    """🔒 FORCEFUL AUTHENTICATION COOKIE DESTRUCTION"""
+    """FORCEFUL AUTHENTICATION COOKIE DESTRUCTION"""
     security_logger.info(
         f"AUTH_KERNEL: Eviction sequence triggered. Production Mode: {IS_PRODUCTION}"
     )
@@ -287,7 +287,7 @@ async def stream_forensic_investigation(
     client_identity = admin_context["user"]
     target_endpoint = "/api/config/investigate-stream"
 
-    # 🔍 DYNAMIC LOG LOOKUP: Fetch the malicious payload details that triggered the alert
+    # DYNAMIC LOG LOOKUP: Fetch the malicious payload details that triggered the alert
     incident_record = db.query(AuditLog).filter(AuditLog.id == payload.alert_id).first()
     malicious_vector = "UNKNOWN_OR_MISSING_PAYLOAD"
     targeted_path = "UNKNOWN_ROUTE"
@@ -366,14 +366,16 @@ async def stream_forensic_investigation(
                 contents=model_memory_buffer,
                 config=types.GenerateContentConfig(
                     system_instruction=system_instruction,
-                    temperature=0.1,  # Lower temperature for deterministic, technical logic evaluation
+                    temperature=0.1,
                 ),
             )
 
             async for chunk in response_stream:
-                if chunk.text:
-                    yield f"data: {chunk.text}\n\n"
-                    accumulated_chunks.append(chunk.text)
+                text = getattr(chunk, "text", None)
+
+                if text:
+                    yield f"data: {text}\n\n"
+                    accumulated_chunks.append(text)
 
         except Exception as e:
             yield f"data: 🚨 ENGINE_STREAM_ERROR: LLM runtime fault encountered during telemetry compilation: {str(e)}\n\n"

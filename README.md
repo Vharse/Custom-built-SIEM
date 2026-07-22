@@ -1,123 +1,303 @@
-# SIEM-Powered Cybersecurity Portfolio
+# Logix Security Portfolio
 
-An enterprise-grade personal portfolio and secure data ingress gateway. Built inside a containerized **Kali Linux** environment, the system utilizes a decoupled architecture: a hardened **FastAPI (Python)** backend kernel serving a framework-free, premium **Tailwind CSS** glassmorphism dashboard.
+### AI-Assisted Security Operations Platform with a Custom SIEM
 
-The entire architecture operates on **Zero-Trust principles** to mitigate vectors outlined in the **OWASP Top 10**.
+# 📖 Overview
+
+This project is a full-stack cybersecurity platform that showcases a custom-built Security Information and Event Management (SIEM) solution with real-time monitoring, security event collection, audit logging, analytics, administrative controls, and AI-assisted incident investigation.
+
+Unlike a traditional portfolio website, this platform combines a modern frontend with a custom Security Operations Platform designed to demonstrate practical cybersecurity engineering. The backend collects and processes security events, maintains audit trails, visualizes operational data, and leverages a Large Language Model (LLM) to assist with log analysis, threat investigation, and incident response.
+
+The project demonstrates practical experience in:
+
+- Security Engineering
+- Application Security
+- Detection Engineering
+- Secure Software Development
+- Backend API Development
+- Security Analytics
+- AI-Assisted Incident Response
+- DevSecOps
+
+The project demonstrates skills in:
+
+- Security Engineering
+- Secure Software Development
+- Detection Engineering
+- Application Security
+- Backend API Development
+- Security Analytics
+- AI-assisted Incident Response
+- DevSecOps
 
 ---
 
-## 🏗️ System Architecture
+# 🏗️ System Architecture
 
 ```text
-       [ Client Browser Surface ]
-        │                      │
-   (Public Ingress)     (Privileged AJAX)
-        │                      │
-        ▼                      ▼
- [ Form Hardening ]     [ Vault Engine Framework ]
-        │                      │   ├─ HttpOnly Token Check
-        │                      │   ├─ Anti-CSRF Handshake Validation
-        │                      │   └─ X-API-Key Header Match
-        ▼                      ▼
-┌────────────────────────────────────────────────────────┐
-│               FASTAPI KERNEL GATEWAY                   │
-└────────────────────────────────────────────────────────┘
-                           │
-                 [ SQLAlchemy ORM Core ]
-                           │
-                           ▼
-              [ SQLite Secure Database ]
-              
 
-## 🛠️ Feature Matrix
+External Users / Security Events
+            │
+            ▼
+    NGINX Reverse Proxy
+    • Security Headers
+    • Rate Limiting
+    • Request Routing
 
-1. Administration Terminal
+            │
+            ▼
+FastAPI Security Backend
+    • Authentication
+    • Event Processing
+    • Detection Engine
+    • Audit Logging
 
-    Dynamic Metrics: State-driven data tables tracking inbound message counts and security exceptions.
+            │
+            ▼
+Security Event Database
+    • Alerts
+    • Audit Logs
+    • Inquiries
+    • Configuration State
 
-    Packet Inspection Module: Interactive UI modal isolating dynamic data display from DOM nodes safely.
+┌──────────────┴──────────────┐
+▼                             ▼
 
-    Atomic Purge Routines: Single-click transactional records deletion without leaving dangling database references.
+AI Investigation (LLM)        Security Analytics
+    • Log Analysis                • Charts
+    • Threat Summary              • Metrics
+    • Event Correlation           • Dashboards
 
-2. Client Ingress Subsystem
 
-    Input Sanitization: Strict boundary validation that normalizes inbound text arrays before ingestion.
+└──────────────┬──────────────┘
+               ▼
 
-## 🛡️ Defensive Security Architecture
-1. Broken Object Level Authorization (BOLA) Mitigation
+Portfolio & Security Dashboard
+    • System Overview
+    • Alerts & Incidents
+    • Inquiries
+    • Audit Logs
+    • Analytics
+    • Configuration
 
-    Cryptographic Identity: Secure user routing sessions managed via JWT (HS256 HMAC) strings.
+────────────────────────────────────────────────────────
 
-    HttpOnly Enclaves: Session tokens are isolated from JavaScript execution ranges via HttpOnly, Secure, and SameSite flags, completely shutting down XSS token-scraping vectors.
+Future Integration
+        │
+        ▼
 
-2. Cross-Site Scripting (XSS) Defenses
+Wazuh SIEM
+    • Log Collection
+    • Custom Decoders
+    • Detection Rules
+    • Alert Correlation
+```
+---
 
-    Context-Aware Encoding: Client-side conversion rules render injected scripts harmless:
+## 📊 System Overview
+> *(screenshot: System Overview)*
+<img src="screenshots/overview.png" alt="AI Investigation" width="900">
 
-JavaScript
+**Highlights**
+Provides a centralized operational dashboard displaying:
 
-escapeHTML: (str) => {
-    if (!str) return "N/A";
-    return String(str)
-        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-}
+- Backend connectivity
+- Incoming security events
+- Security health
+- Threat monitoring
+- Audit statistics
+- System status
 
-    Rigid CSP: Explicit response headers restricting resource execution bounds to validated zones.
+---
 
-3. Anti-CSRF & Boundary Protections
+## 🚨 Alert & Incident Management
 
-    Dual-Token State Validation: Verifies that custom client headers (X-CSRF-Token) precisely match server-generated tokens before executing any backend state change.
+> *(screenshot)*
+<img src="screenshots/alert-and-incident.png">
 
-    Perimeter API Key Verification: Admin routes utilize absolute header alias matching (X-API-Key) pointing to high-entropy variables inside hidden server environments.
+**Highlights**
+Security alerts generated by the custom detection engine are displayed through a dedicated incident interface.
 
-4. Adaptive Rate-Limiting & Forensic Logs
+Capabilities include:
 
-    Exponential Lockout Cooldown: Triggers a 60-second restriction after 3 sequential login failures, compounding by an additional 300 seconds for successive failures to stop brute-force vectors.
+Planned enhancements include:
 
-    Immutable Audit Trail: Forensic tracking logs containing client IP, target endpoints, timestamps, and failed payloads are committed to disk on suspicious behaviors.
+- Wazuh integration
+- Sigma rule support
+- MITRE ATT&CK mapping
+- Threat intelligence feeds
+- Multi-user SOC roles
+- Automated response actions
+- Email notifications
+- Container monitoring
+- IOC enrichment
+- Advanced LLM investigation workflows
 
-## 💻 Tech Stack Blueprint
+---
 
-    Backend Core: Python, FastAPI, Uvicorn, SQLAlchemy ORM, Slowapi
+## 📥 Inquiry Management
 
-    Frontend Surface: Vanilla ES6+, Tailwind CSS (Custom Dark/Glassmorphism Theme)
+> *(screenshot)*
+<img src="screenshots/inquiry.png">
 
-    Target Environment: Kali Linux OS, Docker, Docker Compose
+**Highlights**
+A secure interface for managing inquiries submitted through the portfolio.
 
-## 🚀 Quickstart & Deployment
-1. Configure Local Environment
+Features include:
 
-Create your .env file inside the backend root directory:
-Bash
+- Inquiry collection
+- Review workflow
+- Backend processing
+- Administrative management
 
-cat << EOF > backend/.env
-APP_ENV=development
-ADMIN_USERNAME=sketra
-ADMIN_PASSWORD=your_highly_secure_password_string
-VAULT_API_KEY=SKEPTRA_SECURE_KEY_0000
-EOF
+---
 
-2. Spin Up Orchestration Stack
+## 📝 Audit Logging
 
-Clear system volumes and trigger a clean container build:
-Bash
+> *(screenshot)*
+<img src="screenshots/auditlogs.png">
 
-docker compose down --volumes --remove-orphans
-docker compose up -d --build --force-recreate
+**Highlights**
+Records administrative and security-related activities to provide accountability and traceability.
 
-3. Stream Live Monitor Logs
-Bash
+Examples include:
 
-docker compose logs -f backend
+- Login events
+- Administrative actions
+- Configuration changes
+- Security alerts
+- System operations
 
-## 📊 Security Verification
+---
 
-Test the perimeter authorization barriers outside of the browser using your Kali terminal:
-Bash
+## 📈 Security Analytics
 
-curl -X POST "[http://000.0.0.0:8000/api/manage/delete/1](http://000.0.0.0:8000/api/manage/delete/1)" \
-     -H "X-API-Key: SKEPTRA_SECURE_KEY_0000" \
-     -H "Content-Type: application/json"
+> *(screenshot)*
+<img src="screenshots/analytics.png">
 
-Maintained under a hardened development workspace framework.
+**Highlights**
+Interactive dashboards visualize platform activity using charts and operational metrics.
+
+Analytics include:
+
+- Event distribution
+- Threat frequency
+- Alert statistics
+- Security trends
+- Operational summaries
+
+---
+
+## ⚙️ Security Configuration
+
+> *(screenshot)*
+<img src="screenshots/settings.png">
+
+**Highlights**
+Provides centralized security controls for administrative management.
+
+Current controls include:
+
+- Pydantic validation
+- Audit logging
+- Request throttling
+- Sandbox mode
+- Session revocation
+- Cache management
+- Threat threshold controls
+
+---
+
+## 🤖 AI-Assisted Investigation LLM
+
+> *(screenshot)*
+<img src="screenshots/investigation-modal.png">
+
+**Highlights**
+An integrated Large Language Model (LLM) assists security analysts by providing additional context during investigations.
+
+Capabilities include:
+
+- Security log summarization
+- Threat explanation
+- Event correlation
+- Investigation assistance
+- Incident triage support
+
+---
+
+
+# 💻 Terminal & CLI Demonstrations
+
+The following terminal outputs demonstrate the operational components of the platform during development and testing.
+
+---
+
+## FastAPI Backend
+
+> *(screenshot of Uvicorn running)*
+<img src="screenshots/uvicorn_.png">
+
+Shows:
+
+- API startup
+- Incoming requests
+- HTTP responses
+- Backend logging
+
+---
+
+## Docker Containers
+
+> *(screenshot of `docker ps` or `docker compose ps`)*
+<img src="screenshots/docker.png">
+
+Shows:
+
+- Running services
+- Container health
+- Exposed ports
+
+---
+
+## Security Event Processing
+
+> *(screenshot of security events in the terminal)*
+<img src="screenshots/events.png">
+
+Shows:
+
+- Incoming security events
+- Detection engine processing
+- Event normalization
+
+---
+
+## Audit Log Output
+
+> *(screenshot of audit logs)*
+<img src="screenshots/audit-trails.png">
+
+Shows:
+
+- Authentication events
+- Administrative actions
+- Configuration changes
+- Security audit records
+
+---
+
+## AI Investigation
+
+> *(screenshot of LLM log analysis output)*
+<img src="screenshots/investigation-stream.png">
+<img src="screenshots/investigation-modal.png">
+
+Shows:
+
+- Log summarization
+- Threat explanation
+- Event correlation
+- Investigation assistance
+
+---

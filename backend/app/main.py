@@ -19,18 +19,31 @@ from app.models.audit import AuditLog
 load_dotenv()
 
 
+import os
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
     yield
 
 
-app = FastAPI(docs_url=None, redoc_url=None, title="SIEM-TOOL", lifespan=lifespan)
+ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
+
+if ENVIRONMENT == "production":
+    app = FastAPI(title="SIEM-TOOL", docs_url=None, redoc_url=None, lifespan=lifespan)
+else:
+    app = FastAPI(
+        title="SIEM-TOOL", docs_url="/docs", redoc_url="/redoc", lifespan=lifespan
+    )
+
+
 app.state.limiter = limiter
 app.add_middleware(SecurityHeadersMiddleware)
 
 allowed_origins = os.getenv("ALLOWED_ORIGINS", "").split(",")
 allowed_origins = [origin.strip() for origin in allowed_origins if origin.strip()]
+
 if not allowed_origins:
     allowed_origins = [
         "http://127.0.0.1:8080",
@@ -169,5 +182,5 @@ frontend_dir = os.path.join(base_dir, "frontend")
 if not os.path.exists(frontend_dir):
     os.makedirs(frontend_dir, exist_ok=True)
 
-# app.mount("/", StaticFiles(directory=frontend_dir, html=True), name="static")
-app.mount("/frontend", StaticFiles(directory="/siem-tool/frontend"), name="frontend")
+# app.mount("/frontend", StaticFiles(directory="/siem-tool/frontend"), name="frontend")
+app.mount("/frontend", StaticFiles(directory=frontend_dir), name="frontend")
