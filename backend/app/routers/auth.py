@@ -165,7 +165,7 @@ async def login(
                 )
 
                 uvicorn_logger.warning(
-                    f"🚨 SECURITY ALERT: Bruteforce Attempt - Lockout Active. IP: {client_ip} has failed {fail_count} times. Remaining: {remaining}s"
+                    f"🚨 SECURITY ALERT: BRUTEFORCE ATTEMPT - LOCKOUT ACTIVE. IP: {client_ip} has failed {fail_count} times. Remaining: {remaining}s"
                 )
 
                 return JSONResponse(
@@ -190,7 +190,7 @@ async def login(
             username_clean,
             "/api/login",
             "AUTH_GRANTED_ADMIN_DASHBOARD_ACCESS",
-            "✅ ADMIN LOGIN: Dashboard Access",
+            "✅ ADMIN LOGIN: DASHBOARD ACCESS",
             client_ip,
             "GRANTED",
         )
@@ -237,7 +237,7 @@ async def login(
     determined_exploit_action = analyze_payload_signature(username)
 
     if determined_exploit_action == SECURITY_SIGNATURES["failed_login"]:
-        determined_exploit_action = "⚠️ FAILED LOGIN: Invalid Credentials"
+        determined_exploit_action = "⚠️ FAILED LOGIN: INVALID CREDENTIALS"
         uvicorn_logger.warning(
             f"⚠️ FAILED LOGIN ATTEMPT: Invalid Credentials Entered For User: '{username_clean}' from IP: {client_ip}"
         )
