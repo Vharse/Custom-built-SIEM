@@ -24,6 +24,10 @@ def log_alert(logger_instance, message, *args, **kws):
 
 uvicorn_logger = logging.getLogger("uvicorn")
 
+
+def _sanitize_log(value: str) -> str:
+    return value.replace("\n", "").replace("\r", "").replace("\t", "")
+
 router = APIRouter(tags=["Authentication"])
 
 IS_PROD = os.getenv("APP_ENV", "development") == "production"
@@ -89,7 +93,7 @@ async def login(
     if origin:
         if origin != trusted_boundary:
             uvicorn_logger.critical(
-                f"🚨 SECURITY_ALERT: Auth Origin Mismatch! Origin={origin} from IP={client_ip}"
+                f"🚨 SECURITY_ALERT: Auth Origin Mismatch! Origin={_sanitize_log(origin)} from IP={_sanitize_log(client_ip)}"
             )
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
@@ -98,7 +102,7 @@ async def login(
     elif referer:
         if not referer.startswith(trusted_boundary):
             uvicorn_logger.critical(
-                f"🚨 SECURITY_ALERT: Auth Referer Mismatch! Referer={referer} from IP={client_ip}"
+                f"🚨 SECURITY_ALERT: Auth Referer Mismatch! Referer={_sanitize_log(referer)} from IP={_sanitize_log(client_ip)}"
             )
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
@@ -106,7 +110,7 @@ async def login(
             )
     else:
         uvicorn_logger.critical(
-            f"🚨 SECURITY_ALERT: Auth Request Missing Immutable Tracking Attributes from IP={client_ip}"
+            f"🚨 SECURITY_ALERT: Auth Request Missing Immutable Tracking Attributes from IP={_sanitize_log(client_ip)}"
         )
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
@@ -165,7 +169,7 @@ async def login(
                 )
 
                 uvicorn_logger.warning(
-                    f"🚨 SECURITY ALERT: BRUTEFORCE ATTEMPT - LOCKOUT ACTIVE. IP: {client_ip} has failed {fail_count} times. Remaining: {remaining}s"
+                    f"🚨 SECURITY ALERT: BRUTEFORCE ATTEMPT - LOCKOUT ACTIVE. IP: {_sanitize_log(client_ip)} has failed {fail_count} times. Remaining: {remaining}s"
                 )
 
                 return JSONResponse(
@@ -196,7 +200,7 @@ async def login(
         )
 
         uvicorn_logger.info(
-            f"✅ SUCCESSFUL LOGIN: Admin Authentication Granted For User: '{username_clean}' from IP: {client_ip}"
+            f"✅ SUCCESSFUL LOGIN: Admin Authentication Granted For User: '{_sanitize_log(username_clean)}' from IP: {_sanitize_log(client_ip)}"
         )
 
         authenticated_csrf_token = generate_csrf_token()
@@ -239,13 +243,13 @@ async def login(
     if determined_exploit_action == SECURITY_SIGNATURES["failed_login"]:
         determined_exploit_action = "⚠️ FAILED LOGIN: INVALID CREDENTIALS"
         uvicorn_logger.warning(
-            f"⚠️ FAILED LOGIN ATTEMPT: Invalid Credentials Entered For User: '{username_clean}' from IP: {client_ip}"
+            f"⚠️ FAILED LOGIN ATTEMPT: Invalid Credentials Entered For User: '{_sanitize_log(username_clean)}' from IP: {_sanitize_log(client_ip)}"
         )
         log_status = "DENIED"
     else:
         log_alert(
             uvicorn_logger,
-            f"🚨 ATTACK DETECTED: Signature Match - '{determined_exploit_action}' | Vector: '{username}' from IP: {client_ip}"
+            f"🚨 ATTACK DETECTED: Signature Match - '{_sanitize_log(determined_exploit_action)}' | Vector: '{_sanitize_log(username)}' from IP: {_sanitize_log(client_ip)}"
         )
         log_status = "ALERT"
 
