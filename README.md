@@ -1,6 +1,4 @@
-# Logix Security Portfolio
-
-### AI-Assisted Security Operations Platform with a Custom SIEM
+# Custom-built Security Information and Event Management (SIEM)
 
 # 📖 Overview
 
