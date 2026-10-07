@@ -4,93 +4,107 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; 
-           script-src 'self' 'unsafe-inline' https://unpkg.com https://kit.fontawesome.com https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; 
-           style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; 
-           font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; 
-           connect-src 'self' http://127.0.0.1:8000 http://localhost:8000; 
-           img-src 'self' data:; https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.10.8/sweetalert2.all.min.js;https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css">
-  <title>Oluwafemi | CyberSecurity Ethusiat</title>
+  
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self'; 
+    script-src 'self' 'unsafe-hashes' 'sha256-1hohOpRYCImYhxxXFiyAmCHgvgOYPM9YEUqTv4b+imw=' 'sha256-+dPc5YnMb051t6sHcIsBPKsdTXyvJxcVEI5FpXcYA4M=' https://unpkg.com https://kit.fontawesome.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; 
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; 
+    font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; 
+    connect-src 'self' http://127.0.0.1:8000 http://localhost:8000; 
+    img-src 'self' data: https:; 
+    object-src 'none'; 
+    base-uri 'self';
+    upgrade-insecure-requests;
+" />
+
   <link rel="stylesheet" href="./resources/css/output.css" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer" />
+
+  <!-- Flowbite CSS (Exact computed SRI hash) -->
+  <link rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css"
+    integrity="sha384-10DoVN9MSqT44GmgiaFAkwxLVlZYPyf5Rm3ES/g+kaIo9cjawEBSMh/yo4L5UHsN" 
+    crossorigin="anonymous" />
+
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" />
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+    
+  <title>Vharse | CyberSecurity</title>
 </head>
 
 <body>
   <!-- Navbar -->
-  <!-- <nav
-    class="fixed w-full z-[100] px-8 py-8 bg-[#0f0f0f]/80 backdrop-blur-sm border-b border-emerald-500/10 transition-all duration-300">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <span class="text-sm font-bold tracking-[0.1em] text-emerald-500 mono">
-        LOGIX
-      </span>
-      <div class="hidden md:flex gap-4 text-[11px] uppercase tracking-[0.2em] font-extrabold text-gray-500">
-        <a href="#home" class="hover:text-white/80 text-emerald-500 transition">Home</a>
-        <a href="#about" class="hover:text-white/80 text-emerald-500 transition">About</a>
-        <a href="#skills" class="hover:text-white/80 text-emerald-500 transition">Skills</a>
-        <a href="#expertise" class="hover:text-white/80 text-emerald-500 transition">Expertise</a>
-        <a href="#contact" class="hover:text-white/80 text-emerald-500 transition">Contact</a>
-      </div>
-    </div>
-  </nav> -->
   <nav
-    class="fixed w-full z-20 top-0 start-0 px-8 py-4 bg-[#0f0f0f]/80 backdrop-blur-sm border-b border-emerald-500/10 transition-all duration-300">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <span class="text-sm font-bold tracking-[0.1em] text-emerald-500 mono">
-        LOGIX
-      </span>
+    class="fixed w-full z-20 top-0 start-0 bg-[#0f0f0f]/90 backdrop-blur-md border-b border-emerald-500/10 transition-all duration-300 ease-in-out px-4 py-2 md:px-8 md:py-4 lg:py-4">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-0">
+
+      <!-- Brand Logo -->
+      <a href="#home" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <span class="text-sm p-2 font-bold tracking-[0.1em] text-emerald-500 font-mono">
+          VHARSE
+        </span>
+      </a>
+
+      <!-- Menu Toggle Button -->
       <button data-collapse-toggle="navbar-default" type="button"
-        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
-        aria-controls="navbar-default" aria-expanded="false">
+        class="inline-flex items-center justify-center p-2 w-10 h-10 text-emerald-500 rounded-lg md:hidden hover:bg-emerald-500/10 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition-colors"
+        aria-controls="navbar-default" aria-expanded="false"
+        onclick="document.getElementById('navbar-default').classList.toggle('hidden')">
         <span class="sr-only">Open main menu</span>
-        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-          viewBox="0 0 24 24">
+        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
           <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
         </svg>
       </button>
-      <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+
+      <!-- Navigation Links Container (Collapsible on Mobile) -->
+      <div class="hidden w-full md:block md:w-auto transition-all duration-300 ease-in-out" id="navbar-default">
         <ul
-          class="font-medium text-[14px] flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary">
+          class="font-medium text-[14px] flex flex-col p-4 md:p-0 mt-4 rounded-xl border border-emerald-500/10 bg-[#141414] md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-transparent">
           <li>
             <a href="#home"
-              class="block py-2 px-3 hover:text-white/80 text-emerald-500 transition rounded md:bg-transparent md:text-fg-brand md:p-0"
+              class="block py-2 px-3 text-emerald-500 font-semibold rounded hover:bg-emerald-500/10 md:hover:bg-transparent md:border-0 md:hover:text-emerald-400 md:p-0 transition-colors"
               aria-current="page">Home</a>
           </li>
           <li>
             <a href="#about"
-              class="block py-2 px-3 hover:text-white/80 text-emerald-500 transition text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">About</a>
+              class="block py-2 px-3 text-gray-300 hover:text-emerald-500 rounded hover:bg-emerald-500/10 md:hover:bg-transparent md:border-0 md:hover:text-emerald-400 md:p-0 transition-colors">About</a>
           </li>
           <li>
             <a href="#skills"
-              class="block py-2 px-3 hover:text-white/80 text-emerald-500 transition text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Skills</a>
+              class="block py-2 px-3 text-gray-300 hover:text-emerald-500 rounded hover:bg-emerald-500/10 md:hover:bg-transparent md:border-0 md:hover:text-emerald-400 md:p-0 transition-colors">Skills</a>
           </li>
           <li>
             <a href="#contact"
-              class="block py-2 px-3 hover:text-white/80 text-emerald-500 transition text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Contact</a>
+              class="block py-2 px-3 text-gray-300 hover:text-emerald-500 rounded hover:bg-emerald-500/10 md:hover:bg-transparent md:border-0 md:hover:text-emerald-400 md:p-0 transition-colors">Contact</a>
           </li>
         </ul>
       </div>
+
     </div>
   </nav>
 
-
-
   <!-- Hero Section -->
-  <section class="reveal min-h-screen flex items-center justify-center px-10 py-12 overflow-hidden" id="home">
-    <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 items-center mt-25">
+  <section class="reveal flex items-center justify-center px-10 py-14 mt-14 overflow-hidden" id="home">
+    <div class="max-w-7xl mx-auto w-full grid gap-10 items-center md:grid-cols-1 lg:grid-cols-2 pt-4 ">
       <div class="space-y-4 z-10 order-2 lg:order-1">
         <div class="space-y-1">
           <p class="mono text-emerald-500 text-xs tracking-[0.2em] font-bold"
             style="text-shadow: 0 0 15px rgba(16, 185, 129, 0.7)">
             >> SYSTEM_READY
           </p>
-          <h1 class="text-4xl md:text-4xl font-bold leading-tight tracking-loose text-white">
+          <h1 class="text-3xl md:text-4xl font-bold leading-tight tracking-loose text-white">
             Hi, I am <br />
-            <span class="bg-gradient-to-r from-emerald-500 via-emerald-300 to-cyan-50 bg-clip-text text-transparent">
+            <span style="background: linear-gradient(to right, #10b981, #6ee7b7, #ecfeff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">
               Oluwafemi Noah
             </span>
           </h1>
@@ -131,13 +145,11 @@
           </div>
         </div>
 
-        <div class="flex flex-wrap gap-3 pt-2">
-          <a href="https://github.com/onlyonelogix" target="_blank" rel="noopener noreferrer">
-            <button
-              class="hover:bg-emerald-900 hover:text-white bg-emerald-600 text-black px-8 py-3 text-[12px] font-bold uppercase tracking-widest transition-all rounded-xs cursor-pointer">
-              VIEW PROJECTS
-            </button>
-          </a>
+        <div class="flex flex-col gap-3 pt-2 md:flex-row">
+          <button id="btn-toggle-projects"
+            class="hover:bg-emerald-900 hover:text-white bg-emerald-600 text-black px-8 py-3 text-[12px] font-bold uppercase tracking-widest transition-all rounded-xs cursor-pointer w-full md:w-auto">
+            VIEW PROJECTS
+          </button>
           <button
             class="border border-white/10 hover:bg-white/10 hover:text-emerald-500 text-white px-8 py-3 text-[12px] font-black uppercase tracking-widest transition-all rounded-xs cursor-pointer">
             DOWNLOAD CV
@@ -145,13 +157,14 @@
         </div>
       </div>
 
+      <!-- hero image -->
       <div class="relative order-1 lg:order-2 flex justify-center lg:justify-end">
         <div
           class="absolute -right-5 -top-5 w-full h-full bg-emerald-500/5 blur-[80px] rounded-full pointer-events-none">
         </div>
 
         <div
-          class="relative w-full max-w-[450px] aspect-[4/5] md:aspect-square lg:aspect-[3/3] overflow-hidden shadow-2xl group rounded-full border border-emerald-500/20">
+          class="relative w-full max-w-[450px] aspect-square overflow-hidden shadow-2xl group rounded-full border border-emerald-500/20">
           <img src="./resources/img/hero_img.JPG" alt="Oluwafemi Noah"
             class="object-cover object-top w-full h-full grayscale hover:grayscale-0 transition-all duration-1000 opacity-90 group-hover:opacity-100" />
 
@@ -167,6 +180,159 @@
       </div>
     </div>
   </section>
+
+  <!-- Dynamic Interactive Projects Section -->
+  <section class="hidden max-w-7xl mx-auto px-10 py-12 transition-all duration-500" id="projects-section">
+    <div class="mb-8 border-b border-white/10 pb-4">
+      <h2 class="text-2xl font-bold text-white uppercase tracking-wider mono">
+        <span class="text-emerald-500">>></span> REAL_WORLD_PROJECTS
+      </h2>
+      <p class="text-white/60 mt-1 text-xs md:text-sm mono">
+        Verified DevOps security pipelines, SIEM deployments, Access control architecture, and vulnerability research.
+      </p>
+    </div>
+
+    <!-- Responsive Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Project 1: CUSTOM BUILT SIEM -->
+      <div
+        class="border border-white/10 bg-[#0a0a0a] p-6 rounded-sm hover:border-emerald-500/50 transition-all duration-300 flex flex-col justify-between space-y-4">
+        <div>
+          <div class="flex justify-between items-center mb-3">
+            <span
+              class="text-[10px] mono text-emerald-400 bg-emerald-950/60 border border-emerald-500/20 px-2 py-0.5 rounded-xs">SYSTEM
+              ACTIVE</span>
+            <span class="text-xs text-gray-500 mono">SIEM / AI Integration</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mono mb-2">Custom Built SIEM</h3>
+          <p class="text-white/60 text-xs leading-relaxed mono">A custom-built Security Information and Event Management
+            (SIEM) with real-time monitoring, indices with Google Gemini API to analyze attack vectors, auto-summarize
+            threats, and enforce rate limiting via iptables/systemd.
+          </p>
+        </div>
+
+        <div class="space-y-3 pt-2 border-t border-white/5">
+          <div class="text-[11px] mono text-gray-400 space-y-1">
+            <div><span class="text-emerald-500"></span> <strong class="text-white">Validation:</strong> Tested against
+              live brute-force simulations.</div>
+            <div><span class="text-emerald-500"></span> <strong class="text-white">Stack:</strong> Python(FastAPI),
+              Nginx Reverse Proxy, JavaScrpipt, MySQL, HTML/CSS, Bash, iptables</div>
+          </div>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <a href="https://github.com/Vharse" target="_blank" rel="noopener noreferrer"
+              class="text-[11px] mono bg-white/5 hover:bg-emerald-500/20 hover:text-emerald-400 border border-white/10 text-white px-3 py-1.5 rounded-xs transition">
+              GitHub Code <i class="fa-solid fa-code ml-1"></i>
+            </a>
+            <button data-report="siem"
+              class="btn-open-report text-[11px] mono bg-white/5 hover:bg-emerald-500/20 hover:text-emerald-400 border border-white/10 text-white px-3 py-1.5 rounded-xs transition cursor-pointer">
+              View Evidence <i class="fa-solid fa-file-lines ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: DevSecOps Pipeline -->
+      <div
+        class="border border-white/10 bg-[#0a0a0a] p-6 rounded-sm hover:border-emerald-500/50 transition-all duration-300 flex flex-col justify-between space-y-4">
+        <div>
+          <div class="flex justify-between items-center mb-3">
+            <span
+              class="text-[10px] mono text-emerald-400 bg-emerald-950/60 border border-emerald-500/20 px-2 py-0.5 rounded-xs">PIPELINE
+              VERIFIED</span>
+            <span class="text-xs text-gray-500 mono">DevSecOps / AppSec</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mono mb-2">Automated CI/CD Security Scanner</h3>
+          <p class="text-white/60 text-xs leading-relaxed mono">
+            DevSecOps pipeline embedding Semgrep & SonarQube SAST analysis, Secret-scanning, IaC and OWASP ZAP DAST
+            scanning into automated builds,
+            strictly enforcing quality gates and TLS socket verification prior to execution.
+          </p>
+        </div>
+
+        <div class="space-y-3 pt-2 border-t border-white/5">
+          <div class="text-[11px] mono text-gray-400 space-y-1">
+            <div><span class="text-emerald-500"></span> <strong class="text-white">Validation:</strong> Zero
+              high-severity vulnerabilities passed quality gate.</div>
+            <div><span class="text-emerald-500"></span> <strong class="text-white">Stack:</strong> Semgrep, SonarQube,
+              Trivy, Terraform, Checkov, defectDojo, OWASP
+              ZAP, Docker, TLS, Python</div>
+          </div>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <a href="https://github.com/Vharse" target="_blank" rel="noopener noreferrer"
+              class="text-[11px] mono bg-white/5 hover:bg-emerald-500/20 hover:text-emerald-400 border border-white/10 text-white px-3 py-1.5 rounded-xs transition">
+              GitHub Code <i class="fa-solid fa-code ml-1"></i>
+            </a>
+            <button data-report="devsecops"
+              class="btn-open-report text-[11px] mono bg-white/5 hover:bg-emerald-500/20 hover:text-emerald-400 border border-white/10 text-white px-3 py-1.5 rounded-xs transition cursor-pointer">
+              Audit Pipeline Logs <i class="fa-solid fa-terminal ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3: Zero Trust Access Control & Pentest -->
+      <div
+        class="border border-white/10 bg-[#0a0a0a] p-6 rounded-sm hover:border-emerald-500/50 transition-all duration-300 flex flex-col justify-between space-y-4">
+        <div>
+          <div class="flex justify-between items-center mb-3">
+            <span
+              class="text-[10px] mono text-emerald-400 bg-emerald-950/60 border border-emerald-500/20 px-2 py-0.5 rounded-xs">DOCUMENTED</span>
+            <span class="text-xs text-gray-500 mono">Access Control / Pentesting</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mono mb-2">ZT Access Control & Pentest Audit</h3>
+          <p class="text-white/60 text-xs leading-relaxed mono">
+            Hands-on penetration testing and access control hardening. Documented SQLi, Stored XSS, and broken access
+            controls mapped against OWASP Top 10 with strict server-side remediation.
+          </p>
+        </div>
+
+        <div class="space-y-3 pt-2 border-t border-white/5">
+          <div class="text-[11px] mono text-gray-400 space-y-1">
+            <div><span class="text-emerald-500"></span> <strong class="text-white">Validation:</strong> Remediated
+              target OWASP vulnerabilities.</div>
+            <div><span class="text-emerald-500"></span> <strong class="text-white">Stack:</strong> Python, PostgreSQL
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <a href="https://github.com/Vharse" target="_blank" rel="noopener noreferrer"
+              class="text-[11px] mono bg-white/5 hover:bg-emerald-500/20 hover:text-emerald-400 border border-white/10 text-white px-3 py-1.5 rounded-xs transition">
+              GitHub Code <i class="fa-solid fa-code ml-1"></i>
+            </a>
+            <button data-report="access_control"
+              class="btn-open-report text-[11px] mono bg-white/5 hover:bg-emerald-500/20 hover:text-emerald-400 border border-white/10 text-white px-3 py-1.5 rounded-xs transition cursor-pointer">
+              Vulnerability Report <i class="fa-solid fa-file-pdf ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Report / Evidence Modal -->
+  <div id="project-report-modal"
+    class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div
+      class="bg-[#0f0f0f] border border-white/10 w-full max-w-3xl rounded-xs p-6 font-mono text-xs text-gray-300 space-y-4 shadow-2xl relative">
+      <div class="flex justify-between items-center border-b border-white/10 pb-3">
+        <h3 id="modal-project-title" class="text-emerald-400 font-bold text-sm tracking-wide">PROJECT REPORT LOG</h3>
+        <button id="btn-close-report-x" class="text-gray-500 hover:text-white transition cursor-pointer" aria-label="Close modal">
+          <i class="fa-solid fa-xmark text-base"></i>
+        </button>
+      </div>
+      <div id="modal-project-content" class="space-y-3 leading-relaxed max-h-[60vh] overflow-y-auto pr-2">
+        <!-- Dynamic Content -->
+      </div>
+      <div class="border-t border-white/10 pt-3 flex justify-end">
+        <button id="btn-close-report-footer"
+          class="px-4 py-2 bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-600 hover:text-black font-bold uppercase transition rounded-xs cursor-pointer">
+          Close Report
+        </button>
+      </div>
+    </div>
+  </div>
+
 
   <!-- About -->
   <section id="about" class="reveal py-30 px-8 bg-[#0f0f0f] border-t border-emerald-500/30">
@@ -197,7 +363,6 @@
       </p>
     </div>
   </section>
-
 
 
   <!-- Skills -->
@@ -542,17 +707,17 @@
 
       <form id="auditForm" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
         <div class="space-y-2">
-          <label class="mono text-[12px] text-gray-500 uppercase">Identity</label>
+          <label for="Indentity" class="mono text-[12px] text-gray-500 uppercase">Identity</label>
           <input type="text" id="userName" placeholder="Full Name" required
             class="w-full p-4 text-white rounded-lg bg-white/5 border border-white/10 focus:border-emerald-500 outline-none" />
         </div>
         <div class="space-y-2">
-          <label class="mono text-[12px] text-gray-500 uppercase">Endpoint</label>
+          <label for="Endpoint" class="mono text-[12px] text-gray-500 uppercase">Endpoint</label>
           <input type="email" id="userEmail" placeholder="Email Address" required
             class="w-full p-4 text-white rounded-lg bg-white/5 border border-white/10 focus:border-emerald-500 outline-none" />
         </div>
         <div class="md:col-span-2 space-y-2">
-          <label class="mono text-[12px] text-gray-500 uppercase">Message_Payload</label>
+          <label for="Message_Payload" class="mono text-[12px] text-gray-500 uppercase">Message_Payload</label>
           <textarea id="userMessage" rows="5" placeholder="Project details or audit request..." required
             class="w-full p-4 text-white rounded-lg bg-white/5 border border-white/10 focus:border-emerald-500 outline-none"></textarea>
         </div>
@@ -575,8 +740,8 @@
         title="WhatsApp">
         <i class="fa-brands fa-whatsapp text-green-500 w-4 h-4"></i>
       </a>
-      <a href="mailto:femilogix@gmail.com" target="_blank" class="text-emerald-500 hover:text-white transition-colors"
-        title="Email">
+      <a href="mailto:vharse.security@gmail.com" target="_blank"
+        class="text-emerald-500 hover:text-white transition-colors" title="Email">
         <i class="fa-solid fa-envelope text-red-500 w-4 h-4"></i>
       </a>
       <a href="tel:+2348168114148" target="_blank" class="text-emerald-500 hover:text-white transition-colors"
@@ -586,18 +751,28 @@
     </div>
     <div class="">
       <p class="mono text-[11px] text-gray-300 tracking-widest uppercase w-70 mx-auto sm:w-100">
-        © 2026 LOGIX // ENCRYPTED DATA TRANSFER ONLY
+        © 2026 VHARSE // ENCRYPTED DATA TRANSFER ONLY
       </p>
     </div>
   </footer>
 
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="./resources/js/main.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.10.8/sweetalert2.all.min.js"></script>
-  <script src="./resources/js/formhandler.js"></script>
+  <!-- Lucide Icons (Exact computed SRI hash) -->
+<script 
+  src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" 
+  integrity="sha384-prOTt12iGU6/k2uoXJ3az4BWS2qoxykgxJb6pjfmRK7MYOMnMe7bWWBMPZqxwVks" 
+  crossorigin="anonymous"></script>
 
-</body>
-</body>
+<!-- SweetAlert2 (Exact computed SRI hash) -->
+<script 
+  src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.10.8/sweetalert2.all.min.js" 
+  integrity="sha512-ziDG00v9lDjgmzxhvyX5iztPHpSryN/Ct/TAMPmMmS2O3T1hFPRdrzVCSvwnbPbFNie7Yg5mF7NUSSp5smu7RA==" 
+  crossorigin="anonymous" 
+  referrerpolicy="no-referrer"></script>
+
+<!-- Application Scripts -->
+<script src="./resources/js/main.js"></script>
+<script src="./resources/js/formhandler.js"></script>
+
 </body>
 
 </html>

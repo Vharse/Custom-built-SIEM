@@ -1,18 +1,51 @@
-<aside class="w-64 border-r border-emerald-500/20 bg-[#0f0f0f] flex flex-col fixed h-full">
-    <div class="py-7 px-8 border-b border-white/5 flex items-center gap-3">
-        <i class="fas fa-gauge"></i>
-        <h1 class="text-xl font-black text-white/90 tracking-tighter">SIEM<span class="text-emerald-500">-CORE</span>
+<!-- Hidden Checkbox State Toggle -->
+<input type="checkbox" id="sidebar-toggle-check" class="peer hidden">
+
+<!-- Mobile Top Navigation Bar -->
+<header
+    class="lg:hidden fixed top-0 left-0 right-0 py-8 bg-[#0f0f0f] border-b border-emerald-500/20 px-6 flex items-center justify-between z-40">
+    <div class="flex items-center gap-3">
+        <i class="fas fa-gauge text-white"></i>
+        <h1 class="text-4xl font-black text-white/90 tracking-tighter sm:text-4xl md:text-2xl">VHARSE<span class="text-emerald-500">-SIEM</span>
         </h1>
     </div>
+    <!-- Label acts as the toggle button -->
+    <label for="sidebar-toggle-check" id="sidebar-toggle"
+        class="text-white p-2 rounded-lg hover:bg-white/5 cursor-pointer focus:outline-none">
+        <i id="sidebar-toggle-icon" class="fa-solid fa-bars text-4xl md:text-xl"></i>
+    </label>
+</header>
 
-    <nav class="flex-1 p-4 space-y-2 mt-4">
-        <a href="javascript:void(0)" onclick="DashboardManager.switchView('panel-overview', this)"
+<!-- Backdrop Overlay for Mobile (Triggers checkbox uncheck on tap) -->
+<label for="sidebar-toggle-check" id="sidebar-overlay"
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden peer-checked:block lg:hidden transition-opacity cursor-pointer"></label>
+
+<!-- Sidebar -->
+<aside id="sidebar-menu"
+    class="w-64 border-r border-emerald-500/20 bg-[#0f0f0f] flex flex-col fixed h-full z-50 transform -translate-x-full peer-checked:translate-x-0 lg:translate-x-0 transition-transform duration-300 ease-in-out top-0 left-0">
+    <div class="py-7 px-8 border-b border-white/5 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <i class="fas fa-gauge text-white"></i>
+            <h1 class="text-4xl font-black text-white/90 tracking-tighter md:text-2xl">VHARSE<span
+                    class="text-emerald-500">-SIEM</span>
+            </h1>
+        </div>
+        <!-- Close Button inside Sidebar for Mobile -->
+        <label for="sidebar-toggle-check" class="lg:hidden text-gray-400 hover:text-white cursor-pointer p-1">
+            <i class="fa-solid fa-xmark text-4xl"></i>
+        </label>
+    </div>
+
+    <nav class="flex-1 p-4 space-y-2 mt-4 overflow-y-auto">
+        <a href="javascript:void(0)"
+            onclick="DashboardManager.switchView('panel-overview', this); document.getElementById('sidebar-toggle-check').checked = false;"
             id="sidebar-overview-link"
             class="flex items-center gap-3 p-3 rounded-lg text-white hover:bg-white/5 hover:text-gray-400 text-xs uppercase tracking-widest transition">
             <i class="fa-solid fa-chart-pie w-4"></i> Overview
         </a>
 
-        <a href="javascript:void(0)" onclick="DashboardManager.switchView('panel-security-inbox', this)"
+        <a href="javascript:void(0)"
+            onclick="DashboardManager.switchView('panel-security-inbox', this); document.getElementById('sidebar-toggle-check').checked = false;"
             id="sidebar-inbox-link"
             class="flex items-center gap-3 p-3 rounded-lg text-red-500/80 hover:bg-red-500/10 hover:text-red-400 text-xs uppercase tracking-widest transition border border-transparent hover:border-red-500/20">
             <i class="fa-solid fa-triangle-exclamation w-4"></i>
@@ -21,23 +54,27 @@
             <span id="alert-indicator" class="h-2 w-2 rounded-full ml-auto transition-all duration-300"></span>
         </a>
 
-        <a href="javascript:void(0)" onclick="DashboardManager.switchView('panel-inquiries', this)"
+        <a href="javascript:void(0)"
+            onclick="DashboardManager.switchView('panel-inquiries', this); document.getElementById('sidebar-toggle-check').checked = false;"
             id="sidebar-inquiries-link"
             class="flex items-center gap-3 p-3 rounded-lg text-white hover:bg-white/5 hover:text-gray-400 text-xs uppercase tracking-widest transition">
             <i class="fa-solid fa-terminal w-4"></i> Inquiries
         </a>
-        <a href="javascript:void(0)" onclick="DashboardManager.switchView('panel-audit-logs', this)"
+        <a href="javascript:void(0)"
+            onclick="DashboardManager.switchView('panel-audit-logs', this); document.getElementById('sidebar-toggle-check').checked = false;"
             id="sidebar-audit-link"
             class="flex items-center gap-3 p-3 rounded-lg text-white hover:bg-white/5 hover:text-gray-500 text-xs uppercase tracking-widest transition">
             <i class="fa-solid fa-shield-halved w-4"></i> Audit Logs
         </a>
 
-        <a href="javascript:void(0)" onclick="DashboardManager.switchView('panel-analytics', this)"
+        <a href="javascript:void(0)"
+            onclick="DashboardManager.switchView('panel-analytics', this); document.getElementById('sidebar-toggle-check').checked = false;"
             id="sidebar-analytics-link"
             class="flex items-center gap-3 p-3 rounded-lg text-white hover:bg-white/5 hover:text-gray-500 text-xs uppercase tracking-widest transition">
             <i class="fa-solid fa-chart-line w-4"></i> Analytics
         </a>
-        <a href="javascript:void(0)" onclick="DashboardManager.switchView('panel-settings', this)"
+        <a href="javascript:void(0)"
+            onclick="DashboardManager.switchView('panel-settings', this); document.getElementById('sidebar-toggle-check').checked = false;"
             id="sidebar-settings-link"
             class="flex items-center gap-3 p-3 rounded-lg text-white hover:bg-white/5 hover:text-gray-500 text-xs uppercase tracking-widest transition">
             <i class="fa-solid fa-cog w-4"></i> Settings
