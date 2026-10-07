@@ -27,3 +27,10 @@ node_modules/
 .bash_history
 
 alembic
+
+screenshots/
+img/
+
+internal_ops/js/
+
+sonar-project.properties

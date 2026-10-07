@@ -39,14 +39,11 @@ COPY alembic.ini* /siem-tool/
 
 COPY --from=frontend-builder /siem-tool/frontend/ /siem-tool/frontend/
 
-# --- FIX: Create the directory during build so it exists in read-only mode ---
 RUN mkdir -p /siem-tool/backend/frontend
-# ----------------------------------------------------------------------------
 
 ENV PATH="/siem-tool/backend/.venv/bin:$PATH"
 ENV PYTHONPATH=/siem-tool:/siem-tool/backend
 
-# Ensure logix_user owns the directory
 RUN useradd -m logix_user && chown -R logix_user:logix_user /siem-tool
 USER logix_user
 
