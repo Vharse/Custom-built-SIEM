@@ -289,7 +289,8 @@ function openReportModal(type) {
         title.textContent = 'ZERO TRUST ACCESS CONTROL AUDIT';
 
         const accessImages = [
-            './resources/img/hero_img.JPG'
+            './resources/screenshots/access-control1.png',
+            './resources/screenshots/access-control2.png',
         ];
 
         const galleryHtml = typeof renderImageGallery === 'function' ? renderImageGallery(accessImages) : '';
