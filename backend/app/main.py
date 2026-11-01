@@ -7,7 +7,7 @@ from fastapi.responses import JSONResponse
 from slowapi.errors import RateLimitExceeded  # type: ignore
 from slowapi import Limiter, _rate_limit_exceeded_handler  # type: ignore
 from fastapi.staticfiles import StaticFiles
-from sqlalchemy.orm import Session  # FIXED: Handled session initialization explicitly
+from sqlalchemy.orm import Session 
 
 from app.database.config import Base, engine
 from app.dependencies import limiter

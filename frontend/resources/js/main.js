@@ -327,3 +327,67 @@ if (typeof nextLightboxImage !== "undefined") window.nextLightboxImage = nextLig
 
 window.openReportModal = openReportModal;
 window.closeReportModal = closeReportModal;
+
+
+function openResumeModal() {
+  const modal = document.getElementById('resumeModal');
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden'; // Prevents background scrolling while modal is open
+}
+
+function closeResumeModal() {
+  const modal = document.getElementById('resumeModal');
+  modal.classList.add('hidden');
+  document.body.style.overflow = 'auto'; // Restores background scrolling
+}
+
+// Optional: Close modal when clicking outside the modal box
+window.addEventListener('click', function(event) {
+  const modal = document.getElementById('resumeModal');
+  if (event.target === modal) {
+    closeResumeModal();
+  }
+});
+
+// Optional: Close modal when pressing the 'Escape' key
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeResumeModal();
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('resumeModal');
+  const openBtn = document.getElementById('btn-view-cv');
+  const closeBtn = document.getElementById('btn-close-resume');
+
+  if (openBtn && modal) {
+    openBtn.addEventListener('click', function() {
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+
+  function closeModal() {
+    if (modal) {
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  window.addEventListener('click', function(event) {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closeModal();
+    }
+  });
+});
