@@ -28,8 +28,6 @@ node_modules/
 
 alembic
 
-screenshots/
-
 internal_ops/js/
 
 sonar-project.properties
