@@ -27,6 +27,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('navbar-default');
+
+    if (menuBtn && mobileMenu) {
+        // toggle open/close on hamburger click
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('hidden');
+            document.body.style.overflow = mobileMenu.classList.contains('hidden') ? 'auto' : 'hidden';
+        });
+
+        // close when tapping outside the box
+        document.addEventListener('click', (event) => {
+            if (!mobileMenu.classList.contains('hidden')) {
+                if (!mobileMenu.contains(event.target) && !menuBtn.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+
+        // close when clicking any  nav link inside the menu
+        const navLinks = mobileMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+        });
+    }
+
     const observerOptions = {
         threshold: 0.1,
         rootMargin: "0px 0px -20px 0px"

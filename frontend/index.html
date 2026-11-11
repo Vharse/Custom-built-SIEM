@@ -53,15 +53,14 @@
       </a>
 
       <!-- Menu Toggle Button -->
-      <button data-collapse-toggle="navbar-default" type="button"
-        class="inline-flex items-center justify-center p-2 w-10 h-10 text-emerald-500 rounded-lg md:hidden hover:bg-emerald-500/10 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition-colors"
-        aria-controls="navbar-default" aria-expanded="false"
-        onclick="document.getElementById('navbar-default').classList.toggle('hidden')">
-        <span class="sr-only">Open main menu</span>
-        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
-        </svg>
-      </button>
+      <button data-collapse-toggle="navbar-default" type="button" id="menu-btn"
+	  class="inline-flex items-center justify-center p-2 w-10 h-10 text-emerald-500 rounded-lg md:hidden hover:bg-emerald-500/10 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition-colors"
+	  aria-controls="navbar-default" aria-expanded="false">
+	  <span class="sr-only">Open main menu</span>
+	  <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+	    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
+	  </svg>
+	</button>
 
       <!-- Navigation Links Container (Collapsible on Mobile) -->
       <div class="hidden w-full md:block md:w-auto transition-all duration-300 ease-in-out" id="navbar-default">
