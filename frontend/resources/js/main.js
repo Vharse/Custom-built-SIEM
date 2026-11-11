@@ -1,3 +1,16 @@
+
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+window.addEventListener('beforeunload', () => {
+    window.scrollTo(0, 0);
+});
+
+window.addEventListener('load', () => {
+    window.scrollTo(0, 0);
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     if (window.lucide && typeof window.lucide.createIcons === 'function') {
         lucide.createIcons();
@@ -37,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Attach click listener for Toggle Projects Button (#btn-toggle-projects)
     const toggleBtn = document.getElementById("btn-toggle-projects");
     if (toggleBtn) {
         toggleBtn.addEventListener("click", () => {
@@ -47,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Attach click listeners to open report buttons
     const reportButtons = document.querySelectorAll(".btn-open-report");
     reportButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -58,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Event delegation for dynamically rendered gallery image clicks
     document.body.addEventListener("click", (e) => {
         const galleryCard = e.target.closest("[data-image-index]");
         if (galleryCard) {
@@ -69,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Attach click listeners to close report modal buttons
     const closeBtnX = document.getElementById("btn-close-report-x");
     const closeBtnFooter = document.getElementById("btn-close-report-footer");
 
@@ -87,7 +96,6 @@ function toggleProjectsSection() {
     }
 }
 
-// Global Image Lightbox State & Controls
 window.currentImageGallery = [];
 window.currentImageIndex = 0;
 
@@ -124,12 +132,10 @@ function openImageLightbox(index) {
         `;
         document.body.appendChild(lightbox);
 
-        // CSP-compliant Event Listeners for Lightbox Controls
         document.getElementById('lightbox-close-btn')?.addEventListener('click', closeImageLightbox);
         document.getElementById('lightbox-prev-btn')?.addEventListener('click', prevLightboxImage);
         document.getElementById('lightbox-next-btn')?.addEventListener('click', nextLightboxImage);
 
-        // Keyboard Navigation (ESC, Left, Right)
         window.addEventListener('keydown', (e) => {
             const activeLightbox = document.getElementById('lightbox-modal');
             if (activeLightbox && !activeLightbox.classList.contains('hidden')) {
@@ -187,7 +193,6 @@ function closeImageLightbox() {
     }
 }
 
-// Render dynamic gallery grid using data attributes for click handling
 function renderImageGallery(images = []) {
     if (!images || images.length === 0) return '';
 
@@ -318,7 +323,6 @@ function closeReportModal() {
     }
 }
 
-// Global scope bindings for backward compatibility
 if (typeof toggleProjectsSection !== "undefined") window.toggleProjectsSection = toggleProjectsSection;
 if (typeof openImageLightbox !== "undefined") window.openImageLightbox = openImageLightbox;
 if (typeof closeImageLightbox !== "undefined") window.closeImageLightbox = closeImageLightbox;
@@ -338,10 +342,9 @@ function openResumeModal() {
 function closeResumeModal() {
   const modal = document.getElementById('resumeModal');
   modal.classList.add('hidden');
-  document.body.style.overflow = 'auto'; // Restores background scrolling
+  document.body.style.overflow = 'auto';
 }
 
-// Optional: Close modal when clicking outside the modal box
 window.addEventListener('click', function(event) {
   const modal = document.getElementById('resumeModal');
   if (event.target === modal) {
@@ -349,7 +352,6 @@ window.addEventListener('click', function(event) {
   }
 });
 
-// Optional: Close modal when pressing the 'Escape' key
 document.addEventListener('keydown', function(event) {
   if (event.key === 'Escape') {
     closeResumeModal();
