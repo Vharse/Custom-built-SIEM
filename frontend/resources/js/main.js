@@ -332,7 +332,7 @@ window.closeReportModal = closeReportModal;
 function openResumeModal() {
   const modal = document.getElementById('resumeModal');
   modal.classList.remove('hidden');
-  document.body.style.overflow = 'hidden'; // Prevents background scrolling while modal is open
+  document.body.style.overflow = 'hidden';
 }
 
 function closeResumeModal() {
