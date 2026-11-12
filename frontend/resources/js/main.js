@@ -1,4 +1,3 @@
-
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
@@ -115,6 +114,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (closeBtnX) closeBtnX.addEventListener("click", closeReportModal);
     if (closeBtnFooter) closeBtnFooter.addEventListener("click", closeReportModal);
+
+    // --- Added Certification Event Listeners ---
+    const certButtons = document.querySelectorAll(".btn-open-cert");
+    certButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const certType = btn.getAttribute("data-cert");
+            if (certType) {
+                openCertModal(certType);
+            }
+        });
+    });
+
+    const closeCertBtn = document.getElementById("btn-close-cert");
+    if (closeCertBtn) closeCertBtn.addEventListener("click", closeCertModal);
+
+    window.addEventListener('click', (event) => {
+        const certModal = document.getElementById('certModal');
+        if (event.target === certModal) {
+            closeCertModal();
+        }
+    });
+
+    window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeCertModal();
+        }
+    });
 });
 
 function toggleProjectsSection() {
@@ -424,3 +450,64 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+// --- Added Certification Modal Functions & Bindings ---
+function openCertModal(type) {
+    const modal = document.getElementById('certModal');
+    const title = document.getElementById('modal-cert-title');
+    const content = document.getElementById('modal-cert-content');
+
+    if (!modal || !title || !content) return;
+
+    if (type === 'penetration_tester') {
+        title.textContent = 'CERTIFIED PROFESSIONAL PENETRATION TESTER';
+        content.innerHTML = `
+            <div class="flex flex-col items-center justify-center">
+                <div class="w-full h-64 bg-black/60 border border-emerald-500/30 rounded flex items-center justify-center mb-4 overflow-hidden">
+                    <img src="resources/img/SQI_Boot_Camp_Certification.jpg" alt="Penetration Testing Certificate" class="max-h-full object-contain" onerror="this.onerror=null; this.classList.add('hidden'); if(this.nextElementSibling) this.nextElementSibling.classList.remove('hidden');" />
+                    <div class="hidden text-center p-4">
+                        <i class="fa-solid fa-certificate text-emerald-500 text-3xl mb-2"></i>
+                        <p class="text-xs font-mono text-gray-400">Credential Badge: Offensive Application, Network Security and Digital Forensics</p>
+                    </div>
+                </div>
+                <div class="w-full space-y-2 text-xs font-mono">
+                    <p class="text-white font-bold">Verification Details:</p>
+                    <p class="text-gray-400">Issued by HOD(Cybersecuriy) & Provost • Valid Through 2026</p>
+                    <p class="text-emerald-400">[+] Status: Verified Active & Authentic</p>
+                </div>
+            </div>
+        `;
+    } else if (type === 'devsecops') {
+        title.textContent = 'APPLICATION SECURITY & CI/CD AUDITOR';
+        content.innerHTML = `
+            <div class="flex flex-col items-center justify-center">
+                <div class="w-full h-64 bg-black/60 border border-emerald-500/30 rounded flex items-center justify-center mb-4 overflow-hidden">
+                    <img src="resources/img/" alt="DevSecOps Certificate" class="max-h-full object-contain" onerror="this.onerror=null; this.classList.add('hidden'); if(this.nextElementSibling) this.nextElementSibling.classList.remove('hidden');" />
+                    <div class="hidden text-center p-4">
+                        <i class="fa-solid fa-shield-halved text-emerald-500 text-3xl mb-2"></i>
+                        <p class="text-xs font-mono text-gray-400">Credential Badge: DevSecOps Pipeline Auditor</p>
+                    </div>
+                </div>
+                <div class="w-full space-y-2 text-xs font-mono">
+                    <p class="text-white font-bold">Verification Details:</p>
+                    <p class="text-gray-400">Issued by Secure Pipeline Alliance • Valid Through 2029</p>
+                    <p class="text-emerald-400">[+] Status: Verified Active & Compliant</p>
+                </div>
+            </div>
+        `;
+    }
+
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeCertModal() {
+    const modal = document.getElementById('certModal');
+    if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+window.openCertModal = openCertModal;
+window.closeCertModal = closeCertModal;
